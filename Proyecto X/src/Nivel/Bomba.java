@@ -32,6 +32,6 @@ public class Bomba {
 	}
 	
 	public void mostrarBomba() {
-		grafico.mostrarBomba();
+		//grafico.mostrarBomba();
 	}
 }
