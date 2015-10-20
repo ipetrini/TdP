@@ -27,13 +27,17 @@ public class ThreadBomberman extends Thread {
 	}
 	
 	public void detener() {
-		this.interrupt(); 		
-		this.detener = true;
+		
+			this.interrupt();
+			this.detener = true;
+			
 	}
 	
 	public void destruir() {
-		this.detener();		
+		
 		this.logica.morir();
+		this.detener();		
+		
 	}
 }
 

@@ -27,7 +27,7 @@ public class Nivel {
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.
 		misEnemigos = new ArrayList<Enemigo>();
-		threadE = new ThreadEnemigo[3];
+		threadE = new ThreadEnemigo[6];
 
 		crearMapa(gui);
 		
@@ -41,7 +41,7 @@ public class Nivel {
 		//Creo y añado los enemigos a la GUI.
 		Random r = new Random();
 		int i = 0;
-		while (i<3){
+		while (i<6){
 			int x = r.nextInt(ancho);
 			int y = r.nextInt(alto);
 			if (Mapa[x][y].getPared()==null){
@@ -131,13 +131,10 @@ public class Nivel {
 	
 	public void destruirBomberman() {
 		if(this.threadB != null){
-			try {
-				ThreadBomberman.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			
 			this.threadB.destruir();
 			this.threadB = null;
+			
 		}
 	}
 }

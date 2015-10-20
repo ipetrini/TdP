@@ -109,7 +109,9 @@ public abstract class EntidadGrafica {
 				}
 				
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+			
+				
+				
 			}
 		cambiarIcono(dir);	
 		}

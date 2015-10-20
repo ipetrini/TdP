@@ -6,6 +6,7 @@ import Graficos.BombermanGrafico;
 import Nivel.Bomba;
 import Nivel.Celda;
 import Nivel.Nivel;
+import Threads.ThreadBomba;
 
 public class Bomberman extends Personaje {
 	
@@ -71,6 +72,8 @@ public class Bomberman extends Personaje {
 	
 	public void ponerBomba(){
 		Bomba b = new Bomba(alcance, this.getCelda());
+		Thread t = new ThreadBomba (b);
+		t.start();
 	}
 	
 

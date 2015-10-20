@@ -47,7 +47,7 @@ public class GUI extends JFrame {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				mover(arg0);
+				accion(arg0);
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,10 +62,16 @@ public class GUI extends JFrame {
 		//thread.start();
 	}
 	
-	protected void mover(KeyEvent key){
+	protected void accion(KeyEvent key){
 		if(!lock){
-			direction = key.getKeyCode();
-			this.lock = true;
+			if (key.getKeyCode() == KeyEvent.VK_SPACE ) {
+				System.out.println("Detecte la barra");
+				nivel.getBomberman().ponerBomba();
+			}
+			else{
+				direction = key.getKeyCode();
+				this.lock = true;
+			}
 		}
 	}
 	
