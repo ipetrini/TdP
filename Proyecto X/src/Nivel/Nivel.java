@@ -22,13 +22,14 @@ public class Nivel {
 	protected Marcador miMarcador;
 	protected final int ancho = 31;
 	protected final int alto = 13;
+	protected GUI gui;
 	
 	public Nivel(GUI gui){
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.
 		misEnemigos = new ArrayList<Enemigo>();
 		threadE = new ThreadEnemigo[6];
-
+		this.gui=gui;
 		crearMapa(gui);
 		
 		Celda c = this.getCelda(1, 1);
@@ -88,6 +89,9 @@ public class Nivel {
 		miBomberman.mover(dir);
 	}
 	
+	public GUI getGUI () {
+		return gui;
+	}
 	public void crearMapa(GUI gui){
 		
 		//Setea el borde de paredes Indestructibles

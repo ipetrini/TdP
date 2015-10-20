@@ -1,5 +1,7 @@
 package Nivel;
 
+import javax.swing.JLabel;
+
 import Graficos.BombaGrafica;
 import Graficos.BombaGrafica2;
 import Graficos.BombermanGrafico;
@@ -31,6 +33,9 @@ public class Bomba {
 		grafico.explotar();
 	}
 	
+	public JLabel getGrafico() {
+		return grafico.getGrafico();
+	}
 	public void mostrarBomba() {
 		//grafico.mostrarBomba();
 	}
