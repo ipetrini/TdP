@@ -3,7 +3,11 @@ package Graficos;
 import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.JLabel;
-
+/**
+ * Clase abstracta que representa una pared.
+ * @author Tomás Perotti - Iván Petrini
+ *
+ */
 public abstract class ParedGrafica {
 
 	protected JLabel grafico;
@@ -12,16 +16,26 @@ public abstract class ParedGrafica {
 	protected Point posicion;
 	protected final int ancho = 32;
 	protected final int alto = 32;	
-	
+	/**
+	 * Constructor que inicializa la pared con su posición.
+	 * @param posición x
+	 * @param posición y
+	 */
 	public ParedGrafica(int x, int y){
 		grafico = null;
 		posicion = new Point(x * ancho, y * alto);
 	}
-	
+	/**
+	 * Método que retorna la posición de la pared.
+	 * @return posición
+	 */
 	public Point getPosicion(){
 		return posicion;
 	}
-	
+	/**
+	 * Método que retorna la imagen de la pared.
+	 * @return imagen
+	 */
 	public JLabel getGrafico(){
 		if(this.grafico == null){
 			this.grafico = new JLabel(normal);
@@ -29,6 +43,8 @@ public abstract class ParedGrafica {
 		}
 		return this.grafico;
 	}
-	
+	/**
+	 * Método abstracto que representa el comportamiento de una pared al ser alcanzado por una bomba.
+	 */
 	public abstract void explotar();
 }

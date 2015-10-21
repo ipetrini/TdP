@@ -1,9 +1,17 @@
 package Graficos;
 
 import javax.swing.ImageIcon;
-
+/**
+ * Clase utilizada para representar la gráfica de la bomba.
+ * @author Tomás Perotti - Iván Petrini
+ *
+ */
 public class BombaGrafica2 extends EntidadGrafica{
-
+	/**
+	 * Constructor que inicializa la bomba gráfica.
+	 * @param posicion x
+	 * @param posicion y
+	 */
 	public BombaGrafica2(int x, int y) {
 		super(x, y, 0);
 		this.imagen[0] = new ImageIcon(this.getClass().getResource("/BombaImagenes/exploto.jpg"));
@@ -16,12 +24,16 @@ public class BombaGrafica2 extends EntidadGrafica{
 		this.movimiento[3] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/GifDerecha.gif"));
 		morir = new ImageIcon(this.getClass().getResource("/BombermanImagenes/GifMorir.gif"));
 	}
-	
+	/**
+	 * Método utilizado para hacer explotar gráficamente la bomba.
+	 */
 	public void explotar () {
 		grafico.setIcon(imagen[0]);
 		grafico.setBounds(posicion.x, posicion.y, ancho, alto);
 	}
-	
+	/**
+	 * Método utilizado para hacer desaparecer gráficamente la bomba.
+	 */
 	public void desaparecer () {
 		grafico.setIcon(null);
 	}

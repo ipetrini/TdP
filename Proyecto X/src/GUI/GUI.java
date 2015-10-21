@@ -12,7 +12,11 @@ import javax.swing.border.EmptyBorder;
 import Nivel.Nivel;
 import Threads.ThreadBomberman;
 import java.awt.Color;
-
+/**
+ * Frame utilizado para representar la interfaz gráfica del juego Bomberman.
+ * @author Tomás Perotti - Iván Petrini
+ *
+ */
 public class GUI extends JFrame {
 
 	/**
@@ -25,7 +29,7 @@ public class GUI extends JFrame {
 	private int direction = -1;
 	private ThreadBomberman thread;
 	/**
-	 * Launch the application.
+	 * Ejecuta la aplicación.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -41,7 +45,7 @@ public class GUI extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Crea el frame.
 	 */
 	public GUI() {
 		addKeyListener(new KeyAdapter() {
@@ -74,15 +78,23 @@ public class GUI extends JFrame {
 			}
 		}
 	}
-	
+	/**
+	 * Método que retorna si se puede seguir moviendo el bomberman o no.
+	 * @return
+	 */
 	public boolean getLock(){
 		return this.lock;
 	}
-	
+	/**
+	 * Método que cambia el valor booleano de lock a su inverso.
+	 */
 	public void toggleLock(){
 		this.lock = !this.lock;
 	}
-	
+	/**
+	 * Método que retorna la dirección de movimiento previamente capturada por la interfaz.
+	 * @return dirección
+	 */
 	public int getDirection(){
 		return this.direction;
 	}

@@ -7,19 +7,31 @@ import Nivel.Bomba;
 import Nivel.Celda;
 import Nivel.Nivel;
 import Threads.ThreadBomba;
-
+/**
+ * Clase que representa al personaje bomberman del juego.
+ * @author Tomás Perotti - Iván Petrini.
+ *
+ */
 public class Bomberman extends Personaje {
 	
 	protected int cantBombas;
 	protected int alcance;
-	
+	/**
+	 * Constructor que inicializa al bomberman con su nivel, modo dios, y su celda.
+	 * @param d
+	 * @param n
+	 * @param c
+	 */
 	public Bomberman(boolean d, Nivel n, Celda c) {
 		super(4, d, n, c);
 		cantBombas = 1;
 		alcance = 1;
 		grafico = new BombermanGrafico(miCelda.getX(), miCelda.getY(), velocidad);
 	}
-	
+	/**
+	 * Método que mueve al bomberman en base a la dirección pasada por parámetro.
+	 * @param dirección
+	 */
 	public void mover(int i) {
 		miCelda.setBomberman(null);
 		switch (i){
@@ -47,32 +59,45 @@ public class Bomberman extends Personaje {
 			}					
 		}
 	}
+	/**
+	 * Método que aumenta la cantidad de bombas del bomberman en uno.
+	 */
 	public void aumentarBombas(){
 		cantBombas++;
 	}
-	
+	/**
+	 * Método que duplica el alcance de las bombas del bomberman.
+	 */
 	public void duplicarAlcance(){
 		alcance*=2;
 	}
-	
+	/**
+	 * Método que duplica la velocidad del bomberman.
+	 */
 	public void velocidad2X(){
 		velocidad *= 2;
 	}
-	
+	/**
+	 * Método que setea la condición de dios del bomberman con el boolean pasada por parámetro.
+	 * @param true si es dios, false caso contrario.
+	 */
 	public void setDios(boolean v){
 		dios = v;
 	}
-	
+	/**
+	 * Método que produce la muerte del bomberman.
+	 */
 	public void morir(){
 		if (dios==false){
 			//miNivel.terminarJuego();
 			grafico.morir();
 		}
 	}
-	
+	/**
+	 * Método que realiza la colocación y explosión de la bomba en la celda del bomberman.
+	 */
 	public void ponerBomba(){
 		Bomba b = new Bomba(alcance, this.getCelda());
-		//miNivel se inicializaba como nulo		
 		miNivel.getGUI().add(b.getGrafico());
 		Thread t = new ThreadBomba (b);
 		t.start();

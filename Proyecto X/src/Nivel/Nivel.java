@@ -11,7 +11,11 @@ import Personajes.Rugulo;
 import Personajes.Sirius;
 import Threads.ThreadBomberman;
 import Threads.ThreadEnemigo;
-
+/**
+ * Clase que representa el nivel del juego.
+ * @author Tomás Perotti - Iván Petrini.
+ *
+ */
 public class Nivel {
 
 	protected ArrayList<Enemigo> misEnemigos;
@@ -23,7 +27,10 @@ public class Nivel {
 	protected final int ancho = 31;
 	protected final int alto = 13;
 	protected GUI gui;
-	
+	/**
+	 * Constructor que inicializa la interfaz gráfica del juego con sus respectivos personajes y celdas.
+	 * @param frame
+	 */
 	public Nivel(GUI gui){
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.
@@ -57,41 +64,69 @@ public class Nivel {
 
 		}
 	}
-	
+	/**
+	 * Método que retorna el marcador del juego.
+	 * @return Marcador
+	 */
 	public Marcador getMarcador(){
 		return miMarcador;
 	}
-	
+	/**
+	 * Método que retorna el bomberman del juego.
+	 * @return bomberman
+	 */
 	public Bomberman getBomberman(){
 		return miBomberman;
 	}
-	
+	/**
+	 * Método que elimina un enemigo del juego.
+	 * @param enemigo
+	 */
 	public void eliminarEnemigo(Enemigo e){
 		misEnemigos.remove(e);
 	}
-	
+	/**
+	 * Método que retorna la celda de una posición pasada por parámetro.
+	 * @param posicion x
+	 * @param posicion y
+	 * @return
+	 */
 	public Celda getCelda(int x, int y){
 		if((x < ancho) && (x >= 0) && (y < alto) && (y >= 0))
 			return Mapa[x][y];
 		return null;
 	}
-	
+	/**
+	 * Método que termina la partida del juego. 
+	 */
 	public void terminarJuego(){
 		
 	}
-	
+	/**
+	 * Método que mueve los enemigos.
+	 */
 	public void mover(){
 		for (Enemigo e: misEnemigos)
 			e.mover();
 	}
-	
+	/**
+	 * Método que mueve al bomberman a una dirección dada.
+	 * @param dirección
+	 */
 	public void mover(int dir){
 		miBomberman.mover(dir);
 	}
-	
+	/**
+	 * Método que retorna el frame que representa la interfaz gráfica.
+	 * @return GUI
+	 */
 	public GUI getGUI () {
 		return gui;
 	}
+	/**
+	 * Método encargado de la creación del mapa en la interfaz gráfica.
+	 * @param GUI
+	 */
 	public void crearMapa(GUI gui){
 		
 		//Setea el borde de paredes Indestructibles
@@ -132,7 +167,9 @@ public class Nivel {
 			return false;
 		return true;
 	}
-	
+	/**
+	 * Método que destruye el bomberman del juego.
+	 */
 	public void destruirBomberman() {
 		if(this.threadB != null){
 			

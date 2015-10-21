@@ -1,7 +1,11 @@
 package Graficos;
 
 import javax.swing.ImageIcon;
-
+/**
+ * Clase utilizada
+ * @author Tomas
+ *
+ */
 public class BombermanGrafico extends EntidadGrafica {
 
 	public BombermanGrafico(int x, int y, int v) {
