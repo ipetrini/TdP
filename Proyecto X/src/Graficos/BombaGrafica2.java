@@ -6,8 +6,8 @@ public class BombaGrafica2 extends EntidadGrafica{
 
 	public BombaGrafica2(int x, int y) {
 		super(x, y, 0);
-		this.imagen[0] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/arriba.png"));
-		this.imagen[1] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/abajo.png"));
+		this.imagen[0] = new ImageIcon(this.getClass().getResource("/BombaImagenes/exploto.jpg"));
+		this.imagen[1] = new ImageIcon(this.getClass().getResource("/BombaImagenes/bomba.png"));
 		this.imagen[2] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/izquierda.png"));
 		this.imagen[3] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/derecha.png"));
 		this.movimiento[0] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/GifArriba.gif"));
@@ -18,7 +18,12 @@ public class BombaGrafica2 extends EntidadGrafica{
 	}
 	
 	public void explotar () {
-	System.out.println("QUE ONDA");
+		grafico.setIcon(imagen[0]);
+		grafico.setBounds(posicion.x, posicion.y, ancho, alto);
+	}
+	
+	public void desaparecer () {
+		grafico.setIcon(null);
 	}
 
 }

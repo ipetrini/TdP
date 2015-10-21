@@ -18,23 +18,24 @@ public class ThreadBomba extends Thread {
 	public void run() {
 		try {
 			System.out.println("Se ejecuto el RUN");
-			mostrarBomba();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			System.out.println("Se ejecuto el RUN despues de sleep");
 			explotar();
+			Thread.sleep(1000);
+			desaparecer();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void mostrarBomba() {
-		logica.mostrarBomba();
+	public void explotar() {
+		logica.explotar();
 	
 	}
 	
-	public void explotar() {
-		logica.explotar();
+	public void desaparecer() {
+		logica.desaparecer();
 	
 	}
 }

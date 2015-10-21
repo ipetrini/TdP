@@ -72,7 +72,8 @@ public class Bomberman extends Personaje {
 	
 	public void ponerBomba(){
 		Bomba b = new Bomba(alcance, this.getCelda());
-		//miNivel.getGUI().add(b.getGrafico());
+		//miNivel se inicializaba como nulo		
+		miNivel.getGUI().add(b.getGrafico());
 		Thread t = new ThreadBomba (b);
 		t.start();
 	}

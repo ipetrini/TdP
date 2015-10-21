@@ -119,10 +119,12 @@ public abstract class EntidadGrafica {
 	
 	public JLabel getGrafico(){
 		if(this.grafico == null){
-			this.grafico = new JLabel(imagen[1]);
-			this.grafico.setBounds(posicion.x, posicion.y, ancho, alto);
+				this.grafico = new JLabel(imagen[1]);
+				this.grafico.setBounds(posicion.x, posicion.y, ancho, alto);
 		}
 		return this.grafico;
 	}
+	
+	
 	
 }

@@ -33,7 +33,7 @@ public class Nivel {
 		crearMapa(gui);
 		
 		Celda c = this.getCelda(1, 1);
-		miBomberman = new Bomberman(false, null, Mapa[1][1]);
+		miBomberman = new Bomberman(false, this, Mapa[1][1]);
 		c.setBomberman(miBomberman);
 		gui.add(miBomberman.getGrafico());
 		threadB = new ThreadBomberman(this, gui, miBomberman);

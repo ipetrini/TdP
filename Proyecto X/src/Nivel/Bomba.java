@@ -33,10 +33,13 @@ public class Bomba {
 		grafico.explotar();
 	}
 	
+	public void desaparecer() {
+		grafico.desaparecer();
+	
+	}
+	
 	public JLabel getGrafico() {
 		return grafico.getGrafico();
 	}
-	public void mostrarBomba() {
-		//grafico.mostrarBomba();
-	}
+	
 }
