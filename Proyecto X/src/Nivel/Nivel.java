@@ -82,7 +82,7 @@ public class Nivel {
 					gui.add(b.getGrafico());
 				}
 				else{
-					SpeedUp s = new SpeedUp(Mapa[i][j]);
+					SpeedUp s = new SpeedUp(Mapa[k][j]);
 					gui.add(s.getGrafico());
 				}
 			p++;
