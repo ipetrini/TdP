@@ -53,23 +53,6 @@ public class Nivel {
 		threadB.start();
 
 		Random r = new Random();
-		int p = 0;
-		//Agrego el Bombality y el SpeedUp al mapa.
-		while (p<2){
-			int i = r.nextInt(ancho);
-			int j = r.nextInt(alto);
-			if (Mapa[i][j].getPared()==null){
-				if (p==0){
-					Bombality b = new Bombality(Mapa[i][j]);
-					gui.add(b.getGrafico());
-				}
-				else{
-					SpeedUp s = new SpeedUp(Mapa[i][j]);
-					gui.add(s.getGrafico());
-				}
-			p++;
-			}
-		}
 		
 		//Creo y añado los enemigos a la GUI.
 		int i = 0;
@@ -87,6 +70,25 @@ public class Nivel {
 			}
 
 		}
+		
+		int p = 0;
+		//Agrego el Bombality y el SpeedUp al mapa.
+		while (p<2){
+			int k = r.nextInt(ancho);
+			int j = r.nextInt(alto);
+			if (Mapa[k][j].getPared()==null){
+				if (p==0){
+					Bombality b = new Bombality(Mapa[k][j]);
+					gui.add(b.getGrafico());
+				}
+				else{
+					SpeedUp s = new SpeedUp(Mapa[i][j]);
+					gui.add(s.getGrafico());
+				}
+			p++;
+			}
+		}
+		
 		
 	}
 	
