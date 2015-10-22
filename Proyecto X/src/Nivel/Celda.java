@@ -1,11 +1,11 @@
 package Nivel;
 
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import Personajes.Bomberman;
 import Personajes.Enemigo;
 import PowerUps.PowerUp;
+
 /**
  * Clase que representa la celda.
  * @author Tomás Perotti - Iván Petrini
@@ -13,6 +13,7 @@ import PowerUps.PowerUp;
  */
 public class Celda {
 
+		//Atributos
 		public static final int LEFT = KeyEvent.VK_LEFT;
 		public static final int RIGHT = KeyEvent.VK_RIGHT;
 		public static final int UP = KeyEvent.VK_UP;
@@ -22,8 +23,9 @@ public class Celda {
 		protected Nivel miNivel;
 		protected Pared miPared;
 		protected PowerUp miPowerUp;
-		protected Point posicion;
-		protected boolean hola;
+		protected int x;
+		protected int y;
+		
 		/**
 		 * Constructor que inicializa la celda con su nivel y su posición.
 		 * @param nivel
@@ -34,17 +36,20 @@ public class Celda {
 			miNivel = nivel;
 			miPared = null;
 			miPowerUp = null;
-			posicion = new Point(x,y);
+			this.x = x;
+			this.y = y;
 			misEnemigos = new ArrayList<Enemigo>();
 			miBomberman = null;
 		}
+		
 		/**
-		 * Método que retorna la pared de la celda.		
-		 * @return pared
+		 * Método que retorna la pared de la celda.	
+		 * @return La pared si existe o nulo en caso contrario.
 		 */
 		public Pared getPared(){
 			return miPared;
 		}
+		
 		/**
 		 * Método que retorna la lista de enemigos en la celda.
 		 * @return lista enemigos
@@ -52,6 +57,7 @@ public class Celda {
 		public ArrayList<Enemigo> getEnemigos(){
 			return misEnemigos;
 		}
+		
 		/**
 		 * Método que elimina un enemigo de la celda.
 		 * @param enemigo
@@ -59,6 +65,7 @@ public class Celda {
 		public void eliminarEnemigo(Enemigo e){
 			misEnemigos.remove(e);
 		}
+		
 		/**
 		 * Método que agrega un enemigo a la celda.
 		 * @param enemigo
@@ -66,6 +73,7 @@ public class Celda {
 		public void agregarEnemigo(Enemigo e){
 			misEnemigos.add(e);
 		}
+		
 		/**
 		 * Método que retorna el bomberman de la celda si se encuentra en la misma, de lo contrario retorna nulo.
 		 * @return bomberman
@@ -73,6 +81,7 @@ public class Celda {
 		public Bomberman getBomberman(){
 			return miBomberman;
 		}
+		
 		/**
 		 * Método que setea un bomberman a la celda.
 		 * @param bomberman
@@ -80,6 +89,7 @@ public class Celda {
 		public void setBomberman(Bomberman b){
 			miBomberman = b;
 		}
+		
 		/**
 		 * Método que retorna el nivel del juego.
 		 * @return nivel.
@@ -87,27 +97,31 @@ public class Celda {
 		public Nivel getMapa(){
 			return miNivel;
 		}
+		
 		/**
 		 * Método que retorna la posición x de la celda.
 		 * @return posición x
 		 */
 		public int getX(){
-			return posicion.x;
+			return x;
 		}
+		
 		/**
 		 * Método que retorna la posición y de la celda.
 		 * @return posición y
 		 */
 		public int getY(){
-			return posicion.y;
+			return y;
 		}
+		
 		/**
 		 * Método que retorna el power up de la celda.
-		 * @return power up
+		 * @return Power Up si existe, nulo en caso contrario.
 		 */
 		public PowerUp getPowerUp(){
 			return miPowerUp;
 		}
+		
 		/**
 		 * Método que setea un power up a la celda.
 		 * @param power up
@@ -115,6 +129,7 @@ public class Celda {
 		public void setPowerUp(PowerUp p){
 			miPowerUp = p;
 		}
+		
 		/**
 		 * Método que setea una pared a la celda.
 		 * @param pared
@@ -122,44 +137,59 @@ public class Celda {
 		public void setPared(Pared p){
 			miPared = p;
 		}
+		
 		/**
-		 * Método que permite recibir un enemigo a la celda.
+		 * Método que permite recibir o no un enemigo a la celda.
 		 * @param enemigo
-		 * @return true si lo recibe correctamente, false en caso contrario.
+		 * @param direccion donde se movera el enemigo.
+		 * @return true si lo puede recibir, false en caso contrario.
 		 */
-		public boolean recibirEnemigo(Enemigo e){
+		public boolean recibirEnemigo(Enemigo e, int dir){
 			if (miPared!=null){
 				if (miPared.recibirEnemigo(e)){
 					return true;
 				}
 			}
 			else {
-				agregarEnemigo(e);
-				if (miBomberman!=null)
+				if (this.getBomberman()!=null){
 					miNivel.destruirBomberman();
+				}
+				agregarEnemigo(e);
+				e.moverGrafico(dir);
 				return true;
 			}					
 			return false;
 		
 		}
+		
 		/**
-		 * Método que permite recibir al bomberman en la celda.
-		 * @return true si lo recibio correctamente, false caso contrario.
+		 * Método que permite recibir o no al Bomberman a la celda.
+		 * @param enemigo
+		 * @param direccion donde se movera el Bomberman.
+		 * @return true si lo puede recibir, false en caso contrario.
 		 */
-		public boolean recibirBomberman(Bomberman b){
+		public boolean recibirBomberman(Bomberman b, int dir){
 			if (miPared!=null){
 				if (miPared.recibirBomberman(b)){
 					return true;
 				}
 			}
 			else{
-				if (misEnemigos.size()!=0)
+				if (!this.getEnemigos().isEmpty()){					
+					System.out.println("Me mori.");
 					miNivel.destruirBomberman();
+				}
 				miBomberman=b;
+				b.moverGrafico(dir);
+				if (miPowerUp!=null){
+					miPowerUp.activar(b);
+					miPowerUp=null;
+				}
 				return true;
 			}			
 			return false;
 		}
+		
 		/**
 		 * Método que destruye la pared de la celda.
 		 */
@@ -167,6 +197,7 @@ public class Celda {
 			if(miPared.destruir())
 				miPared = null;
 		}
+		
 		/**
 		 * Método que destruye todos los personajes de la celda. En caso de que el bomberman sea dios, no lo destruye.
 		 */
@@ -177,23 +208,25 @@ public class Celda {
 			if (!miBomberman.esDios())
 				miNivel.destruirBomberman();
 		}
+			
 		/**
 		 * Método que retorna la celda vecina en relación a la dirección pasada por parámetro.	
 		 * @param dirección
-		 * @return celda
+		 * @return Celda o nulo si no existe celda en la dirección pasada por parametro
 		 */
 		public Celda getVecina(int dir){
 			switch (dir){
 				case UP :
-					return miNivel.getCelda(posicion.x, posicion.y - 1);
+					return miNivel.getCelda(x, y - 1);
 				case DOWN :
-					return miNivel.getCelda(posicion.x, posicion.y + 1);
+					return miNivel.getCelda(x, y + 1);
 				case LEFT :
-					return miNivel.getCelda(posicion.x - 1,posicion.y);
+					return miNivel.getCelda(x - 1, y);
 				case RIGHT :
-					return miNivel.getCelda(posicion.x + 1, posicion.y);
+					return miNivel.getCelda(x + 1, y);
+				default:
+					return null;
 			}
-			return null;
 		}
 		
 		

@@ -3,14 +3,16 @@ package Nivel;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 import GUI.GUI;
-import Personajes.Altair;
 import Personajes.Bomberman;
 import Personajes.Enemigo;
 import Personajes.Rugulo;
-import Personajes.Sirius;
+import PowerUps.Bombality;
+import PowerUps.SpeedUp;
 import Threads.ThreadBomberman;
 import Threads.ThreadEnemigo;
+
 /**
  * Clase que representa el nivel del juego.
  * @author Tomás Perotti - Iván Petrini.
@@ -18,6 +20,7 @@ import Threads.ThreadEnemigo;
  */
 public class Nivel {
 
+	//Atributos
 	protected ArrayList<Enemigo> misEnemigos;
 	protected ThreadEnemigo[] threadE;
 	protected ThreadBomberman threadB;
@@ -27,29 +30,50 @@ public class Nivel {
 	protected final int ancho = 31;
 	protected final int alto = 13;
 	protected GUI gui;
+	
 	/**
 	 * Constructor que inicializa la interfaz gráfica del juego con sus respectivos personajes y celdas.
 	 * @param frame
 	 */
 	public Nivel(GUI gui){
+		this.gui = gui;
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.
 		misEnemigos = new ArrayList<Enemigo>();
-		threadE = new ThreadEnemigo[6];
-		this.gui=gui;
+		threadE = new ThreadEnemigo[3];
+
 		crearMapa(gui);
-		
+
+		//Agrego al Bomberman al Mapa y creo su thread.
 		Celda c = this.getCelda(1, 1);
 		miBomberman = new Bomberman(false, this, Mapa[1][1]);
 		c.setBomberman(miBomberman);
 		gui.add(miBomberman.getGrafico());
 		threadB = new ThreadBomberman(this, gui, miBomberman);
 		threadB.start();
+
+		Random r = new Random();
+		int p = 0;
+		//Agrego el Bombality y el SpeedUp al mapa.
+		while (p<2){
+			int i = r.nextInt(ancho);
+			int j = r.nextInt(alto);
+			if (Mapa[i][j].getPared()==null){
+				if (p==0){
+					Bombality b = new Bombality(Mapa[i][j]);
+					gui.add(b.getGrafico());
+				}
+				else{
+					SpeedUp s = new SpeedUp(Mapa[i][j]);
+					gui.add(s.getGrafico());
+				}
+			p++;
+			}
+		}
 		
 		//Creo y añado los enemigos a la GUI.
-		Random r = new Random();
 		int i = 0;
-		while (i<6){
+		while (i<3){
 			int x = r.nextInt(ancho);
 			int y = r.nextInt(alto);
 			if (Mapa[x][y].getPared()==null){
@@ -63,7 +87,9 @@ public class Nivel {
 			}
 
 		}
+		
 	}
+	
 	/**
 	 * Método que retorna el marcador del juego.
 	 * @return Marcador
@@ -71,6 +97,7 @@ public class Nivel {
 	public Marcador getMarcador(){
 		return miMarcador;
 	}
+	
 	/**
 	 * Método que retorna el bomberman del juego.
 	 * @return bomberman
@@ -79,29 +106,40 @@ public class Nivel {
 		return miBomberman;
 	}
 	/**
+	 * Método que retorna el frame del juego.
+	 * @return frame.
+	 */
+	public GUI getGUI(){
+		return this.gui;
+	}
+	
+	/**
 	 * Método que elimina un enemigo del juego.
 	 * @param enemigo
 	 */
 	public void eliminarEnemigo(Enemigo e){
 		misEnemigos.remove(e);
 	}
+	
 	/**
 	 * Método que retorna la celda de una posición pasada por parámetro.
 	 * @param posicion x
 	 * @param posicion y
-	 * @return
+	 * @return Celda si existe, nulo caso contrario.
 	 */
 	public Celda getCelda(int x, int y){
 		if((x < ancho) && (x >= 0) && (y < alto) && (y >= 0))
 			return Mapa[x][y];
 		return null;
 	}
+	
 	/**
 	 * Método que termina la partida del juego. 
 	 */
 	public void terminarJuego(){
 		
 	}
+	
 	/**
 	 * Método que mueve los enemigos.
 	 */
@@ -109,6 +147,7 @@ public class Nivel {
 		for (Enemigo e: misEnemigos)
 			e.mover();
 	}
+	
 	/**
 	 * Método que mueve al bomberman a una dirección dada.
 	 * @param dirección
@@ -116,13 +155,7 @@ public class Nivel {
 	public void mover(int dir){
 		miBomberman.mover(dir);
 	}
-	/**
-	 * Método que retorna el frame que representa la interfaz gráfica.
-	 * @return GUI
-	 */
-	public GUI getGUI () {
-		return gui;
-	}
+	
 	/**
 	 * Método encargado de la creación del mapa en la interfaz gráfica.
 	 * @param GUI
@@ -148,6 +181,7 @@ public class Nivel {
 				}
 			}
 		}
+		
 		//Rellena el mapa con paredes Destructibles.
 		Random r = new Random();
 		int x = 0;
@@ -160,6 +194,7 @@ public class Nivel {
 				x++;
 			}
 		}
+		
 	}
 	
 	private boolean noBloquea(int i, int j){
@@ -167,15 +202,16 @@ public class Nivel {
 			return false;
 		return true;
 	}
+	
 	/**
 	 * Método que destruye el bomberman del juego.
 	 */
 	public void destruirBomberman() {
 		if(this.threadB != null){
-			
 			this.threadB.destruir();
 			this.threadB = null;
-			
 		}
 	}
+	
+	
 }

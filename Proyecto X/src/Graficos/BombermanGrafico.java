@@ -1,13 +1,21 @@
 package Graficos;
 
 import javax.swing.ImageIcon;
+
 /**
- * Clase utilizada
- * @author Tomas
+ * Clase utilizada para representar la gráfica del Bomberman.
+ * @author Tomas Perotti - Iván Petrini
  *
  */
+
 public class BombermanGrafico extends EntidadGrafica {
 
+	//Constructor
+	/**
+	 * Constructor que inicializa el Bomberman con su posición y su velocidad.
+	 * @param posición x
+	 * @param posición y
+	 */
 	public BombermanGrafico(int x, int y, int v) {
 		super(x, y, v);
 		this.imagen[0] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/arriba.png"));
@@ -21,5 +29,6 @@ public class BombermanGrafico extends EntidadGrafica {
 		morir = new ImageIcon(this.getClass().getResource("/BombermanImagenes/GifMorir.gif"));
 
 	}
+	
 
 }

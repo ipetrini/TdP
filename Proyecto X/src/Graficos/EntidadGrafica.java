@@ -5,13 +5,16 @@ import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import Nivel.Celda;
+
 /**
  * Clase abstracta que representa una entidad gráfica
  * @author Tomás Perotti - Iván Petrini
  *
  */
+
 public abstract class EntidadGrafica {
 	
+	//Atributos
 	protected JLabel grafico;
 	protected Icon imagen[];
 	protected Icon movimiento[];
@@ -20,18 +23,20 @@ public abstract class EntidadGrafica {
 	protected final int ancho = 32;
 	protected final int alto = 32;	
 	protected int velocidad;
+	
+	//Constructor
 	/**
-	 * Constructor que inicializa la entidad gráfica.
+	 * Constructor que inicializa la entidad gráfica con su posición y su velocidad.
 	 * @param posición x
 	 * @param posición y
-	 * @param velocidad v
 	 */
-	public EntidadGrafica(int x, int y, int v){		
+	protected EntidadGrafica(int x, int y, int v){		
 		imagen = new Icon[4];
 		movimiento = new Icon[4];
 		posicion = new Point(x * ancho, y * alto);
 		velocidad = v;				
 	}
+	
 	/**
 	 * Método que retorna la posición de la entidad.
 	 * @return posicion
@@ -39,6 +44,7 @@ public abstract class EntidadGrafica {
 	public Point getPosicion(){
 		return posicion;
 	}
+	
 	/**
 	 * Método que retorna la velocidad de la entidad.
 	 * @return velocidad
@@ -47,6 +53,10 @@ public abstract class EntidadGrafica {
 		return velocidad;
 	}
 	
+	public void duplicarVelocidad(){
+		velocidad *= 2;
+	}
+		
 	protected void cambiarIcono(int d){
 		int direccion = -1;		
 		switch (d){
@@ -84,16 +94,17 @@ public abstract class EntidadGrafica {
 		}		
 		grafico.setIcon(movimiento[direccion]);
 	}
+	
 	/**
 	 * Método utilizado para destruir la entidad gráfica.
 	 */
 	public void morir(){
 		grafico.setIcon(morir);		
-		//grafico.setIcon(null);
 	}
+	
 	/**
 	 * Método utilizado para mover la entidad gráfica.
-	 * @param dirección
+	 * @param dirección del movimiento.
 	 */
 	public void mover(int dir){
 		if(grafico != null){
@@ -129,25 +140,21 @@ public abstract class EntidadGrafica {
 				}
 				
 			} catch (InterruptedException e) {
-			
-				
-				
 			}
 		cambiarIcono(dir);	
 		}
 	}
+	
 	/**
 	 * Método utilizado para obtener la imagen de la entidad gráfica.
-	 * @return imagen
+	 * @return imagen del grafico.
 	 */
 	public JLabel getGrafico(){
 		if(this.grafico == null){
-				this.grafico = new JLabel(imagen[1]);
-				this.grafico.setBounds(posicion.x, posicion.y, ancho, alto);
+			this.grafico = new JLabel(imagen[1]);
+			this.grafico.setBounds(posicion.x, posicion.y, ancho, alto);
 		}
 		return this.grafico;
 	}
-	
-	
 	
 }

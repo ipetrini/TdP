@@ -2,12 +2,16 @@ package Graficos;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
 /**
  * Clase utilizada para representar una pared indestructible.
  * @author Tomás Perotti - Iván Petrini
  *
  */
+
 public class IndestructibleGrafica extends ParedGrafica {
+
+	//Constructor
 	/**
 	 * Constructor que inicializa la pared indestructible con su posición.
 	 * @param posición x
@@ -18,8 +22,10 @@ public class IndestructibleGrafica extends ParedGrafica {
 		this.normal = new ImageIcon(this.getClass().getResource("/ParedImagenes/Indestructible.png"));
 		this.explosion = null;
 	}
+	
 	/**
 	 * Método que retorna la imagen de la pared indestructible.	
+	 * @return grafico de la pared.
 	 */
 	public JLabel getGrafico(){
 		if(this.grafico == null){
@@ -28,6 +34,7 @@ public class IndestructibleGrafica extends ParedGrafica {
 		}
 		return this.grafico;
 	}
+	
 	
 	public void explotar(){		
 	}

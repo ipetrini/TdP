@@ -5,12 +5,14 @@ import java.util.Random;
 import Graficos.RuguloGrafico;
 import Nivel.Celda;
 import Nivel.Nivel;
+
 /**
  * Clase que representa al enemigo Rugulo del juego.
  * @author Tomás Perotti - Iván Petrini.
  *
  */
 public class Rugulo extends Enemigo{
+
 	/**
 	 * Constructor que inicializa al enemigo Rugulo con su nivel y celda.
 	 * @param nivel 
@@ -21,6 +23,9 @@ public class Rugulo extends Enemigo{
 		grafico = new RuguloGrafico(miCelda.getX(), miCelda.getY(), velocidad);		
 	}
 
+	/**
+	 * Método que realiza el movimiento del Rugulo de manera random.
+	 */
 	public void mover() {
 		Random r = new Random();		
 		int dir = r.nextInt(4);		
@@ -44,6 +49,9 @@ public class Rugulo extends Enemigo{
 		moverAux(direccion);
 	}
 
+	/**
+	 * Método que produce la muerte del Rugulo.
+	 */
 	public void morir() {
 		
 	}
@@ -51,11 +59,13 @@ public class Rugulo extends Enemigo{
 	private void moverAux(int dir){
 		Celda next = this.miCelda.getVecina(dir);		
 		if(next != null){
-				if (next.recibirEnemigo(this)){
+				if (next.recibirEnemigo(this, dir)){
 					miCelda = next;
-					this.grafico.mover(dir);
+					
 			}					
 		}
+		else
+			miCelda.agregarEnemigo(this);
 	}
 
 }

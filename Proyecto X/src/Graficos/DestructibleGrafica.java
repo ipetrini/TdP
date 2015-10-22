@@ -2,14 +2,18 @@ package Graficos;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
 /**
- * Clase utilizada para representar la pared destructible.
- * @author Tomás Perotti - Iván Petrini
+ * Clase utilizada para representar la gráfica de la pared destructible.
+ * @author Tomas Perotti - Iván Petrini
  *
  */
+
 public class DestructibleGrafica extends ParedGrafica {
+
+	//Constructor
 	/**
-	 * Constructor que inicializa la pared destructible con su posición.
+	 * Constructor que inicializa la pared Destructible con su posición.
 	 * @param posición x
 	 * @param posición y
 	 */
@@ -19,6 +23,7 @@ public class DestructibleGrafica extends ParedGrafica {
 		this.explosion = new ImageIcon(this.getClass().getResource("/ParedImagenes/ExplosionPared.gif"));
 		
 	}
+	
 	/**
 	 * Método que retorna la imagen de la pared destructible.
 	 */
@@ -29,6 +34,7 @@ public class DestructibleGrafica extends ParedGrafica {
 		}
 		return this.grafico;
 	}
+	
 	/**
 	 * Método utilizado para explotar la pared destructible.
 	 */

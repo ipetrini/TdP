@@ -1,17 +1,18 @@
 package Graficos;
 
 import javax.swing.ImageIcon;
+
 /**
- * Clase que representa la gráfica del enemigo Rugulo.
- * @author Tomás Perotti - Iván Petrini
+ * Clase utilizada para representar la gráfica del Rugulo.
+ * @author Tomas Perotti - Iván Petrini
  *
  */
 public class RuguloGrafico extends EntidadGrafica {
+
 	/**
-	 * Constructor que inicializa al Rugulo con su posición y velocidad
-	 * @param pósicion x 
+	 * Constructor que inicializa el Rugulo con su posición y su velocidad.
+	 * @param posición x
 	 * @param posición y
-	 * @param velocidad
 	 */
 	public RuguloGrafico(int x, int y, int v) {
 		super(x, y, v);

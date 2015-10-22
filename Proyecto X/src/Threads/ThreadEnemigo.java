@@ -1,60 +1,52 @@
 package Threads;
 
 import Personajes.Enemigo;
+
 /**
  * Clase que representa el Thread de el enemigo.
  * @author Tomás Perotti - Iván Petrini.
  *
  */
 public class ThreadEnemigo extends Thread{
-	// Logica que implementa al malo.
 		private Enemigo Logica;
 		
-		// Flag que indica cuando debe detenerse la ejecución del hilo.
-		// Es volatile porque es accedida desde concurrentemente desde diferentes threads.
-		private volatile boolean mDetener;
+		//Atributos
+		private volatile boolean Detener;
+		
 		/**
 		 * Constructor que inicializa el Thread del enemigo con su implementación lógica.
 		 * @param enemigo
 		 */
 		public ThreadEnemigo(Enemigo logica) {
 			this.Logica  = logica;
-			this.mDetener = false;
+			this.Detener = false;
 		}
 		
 		/**
 		 * Método run del Thread
 		 */
 		public void run() {
-			// Ejecuto indefinidamente hasta que el flag sea verdadero.
-			while(!this.mDetener){
-				// Duermo el hilo 1 segundo.
-				// De esta manera cada turno se ejecuta cada 1 segundo.
+			while(!this.Detener){
 				try {
-					Thread.sleep(0);
-					
-					// Realizo el movimiento
+					Thread.sleep(100);					
 					this.Logica.mover();
 				} catch (InterruptedException e) { }
 			}
 		}
+		
 		/**
 		 * Método que permite la detención del Thread.
 		 */
 		public void detener() {
-			// Interrumpo el hilo para que no continue con su ejecución.
-			this.interrupt(); 
-			
-			// Seteamos el flag para detener su ejecución.
-			this.mDetener = true;
+			this.interrupt();			
+			this.Detener = true;
 		}
+		
 		/**
 		 * Método que destruye el enemigo.
 		 */
 		public void destruir() {
-			// Detengo la ejecucion del hilo.
 			this.detener();
 			
-			// Notificamos a la logica que este hilo se destruyo.
 		}
 }

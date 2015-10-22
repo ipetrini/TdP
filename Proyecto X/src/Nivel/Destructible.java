@@ -3,20 +3,27 @@ package Nivel;
 import Graficos.DestructibleGrafica;
 import Personajes.Bomberman;
 import Personajes.Enemigo;
+
 /**
  * Clase que representa la lógica de una pared destructible.
  * @author Tomás Perotti - Iván Petrini
  *
  */
 public class Destructible extends Pared {
-/**
- * Constructor que inicializa la pared destructible con su celda.
- * @param celda
- */
+
+	/**
+	 * Constructor que inicializa la pared destructible en su celda.
+	 * @param celda
+	 */
 	public Destructible(Celda c){
 		grafico = new DestructibleGrafica(c.getX(), c.getY());
 	}
 	
+	/**
+	 * Método que determina si un enemigo puede atravesar o no la pared.
+	 * @param enemigo
+	 * @return true si lo puede recibir, false en caso contrario.
+	 */
 	public boolean recibirEnemigo(Enemigo e) {
 		if (e.esDios()){
 			miCelda.agregarEnemigo(e);
@@ -25,6 +32,11 @@ public class Destructible extends Pared {
 		return false;
 	}
 
+	/**
+	 * Método que determina si el Bomberman puede atravesar o no la pared.
+	 * @param enemigo
+	 * @return true si lo puede recibir, false en caso contrario.
+	 */
 	public boolean recibirBomberman(Bomberman b) {
 		if (b.esDios()){
 			miCelda.setBomberman(b);
@@ -33,6 +45,10 @@ public class Destructible extends Pared {
 		return false;
 	}
 
+	/**
+	 * Método que determina si la pared se puede destruir o no.
+	 * @return true si lo puede recibir, false en caso contrario.
+	 */
 	public boolean destruir() {
 		return true;
 	}
