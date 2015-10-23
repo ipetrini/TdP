@@ -1,0 +1,1 @@
+Para visualizar correctamente cada diagrama es necesario abrir cada uno por separado desde el Model Explorer, ubicado en la barra derecha del Star UML.
