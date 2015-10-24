@@ -61,6 +61,7 @@ public class GUI extends JFrame {
 		Mapa.setLayout(null);
 		setContentPane(Mapa);
 		nivel = new Nivel(this);
+		System.out.println("La bomba es ingresada con la tecla K");
 		
 	}
 	
