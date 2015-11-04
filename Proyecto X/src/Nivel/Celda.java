@@ -146,7 +146,7 @@ public class Celda {
 		 */
 		public boolean recibirEnemigo(Enemigo e, int dir){
 			if (miPared!=null){
-				if (miPared.recibirEnemigo(e)){
+				if (miPared.recibirEnemigo(e, dir)){
 					return true;
 				}
 			}
@@ -203,9 +203,9 @@ public class Celda {
 		 */
 		public void explotar(){
 			for (Enemigo e: misEnemigos){
-				e.morir();
+				miNivel.destruirEnemigo(e);
 			}
-			if (!miBomberman.esDios())
+			if (miBomberman!=null && !miBomberman.esDios())
 				miNivel.destruirBomberman();
 		}
 			

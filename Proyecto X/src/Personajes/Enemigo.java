@@ -12,7 +12,7 @@ public abstract class Enemigo extends Personaje {
 
 	//Atributos
 	protected int puntaje;
-	
+	protected int posThread;
 	/**
 	 * Constructor que inicializa al enemigo con su velocidad, nivel, celda, modo dios y puntaje.
 	 * @param velocidad
@@ -42,8 +42,18 @@ public abstract class Enemigo extends Personaje {
 	/**
 	 * Método que permite la muerte de un enemigo.
 	 */
-	public abstract void morir();
+	public void morir(){
+		grafico.morir();
+		System.out.println("Enemigo murio");
+	}
 	
+	public void setPosThread(int i){
+		posThread = 1;
+	}
+	
+	public int getPosThread(){
+		return posThread;
+	}
 	
 	
 	

@@ -46,6 +46,7 @@ public class ThreadEnemigo extends Thread{
 		 * Método que destruye el enemigo.
 		 */
 		public void destruir() {
+			this.Logica.morir();
 			this.detener();
 			
 		}

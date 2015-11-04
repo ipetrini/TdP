@@ -5,6 +5,7 @@ import java.util.Random;
 
 
 import GUI.GUI;
+import Personajes.Altair;
 import Personajes.Bomberman;
 import Personajes.Enemigo;
 import Personajes.Rugulo;
@@ -40,10 +41,8 @@ public class Nivel {
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.
 		misEnemigos = new ArrayList<Enemigo>();
-		threadE = new ThreadEnemigo[3];
-
+		threadE = new ThreadEnemigo[5];
 		crearMapa(gui);
-
 		//Agrego al Bomberman al Mapa y creo su thread.
 		Celda c = this.getCelda(1, 1);
 		miBomberman = new Bomberman(false, this, Mapa[1][1]);
@@ -53,24 +52,6 @@ public class Nivel {
 		threadB.start();
 
 		Random r = new Random();
-		
-		//Creo y añado los enemigos a la GUI.
-		int i = 0;
-		while (i<3){
-			int x = r.nextInt(ancho);
-			int y = r.nextInt(alto);
-			if (Mapa[x][y].getPared()==null){
-				Rugulo rug = new Rugulo(this, Mapa[x][y]);
-				misEnemigos.add(rug);
-				Mapa[x][y].agregarEnemigo(rug);
-				gui.add(rug.getGrafico());
-				threadE[i] = new ThreadEnemigo(rug);
-				threadE[i].start();		
-				i++;
-			}
-
-		}
-		
 		int p = 0;
 		//Agrego el Bombality y el SpeedUp al mapa.
 		while (p<2){
@@ -88,7 +69,7 @@ public class Nivel {
 			p++;
 			}
 		}
-		
+
 		
 	}
 	
@@ -183,7 +164,9 @@ public class Nivel {
 				}
 			}
 		}
-		
+		//Añado Altairs
+		añadirAltairs();
+
 		//Rellena el mapa con paredes Destructibles.
 		Random r = new Random();
 		int x = 0;
@@ -196,6 +179,7 @@ public class Nivel {
 				x++;
 			}
 		}
+		añadirRugulos();
 		
 	}
 	
@@ -203,6 +187,44 @@ public class Nivel {
 		if ((i==1 &&j==1) || (i==1 && j==2) || (i==2 && j==1))
 			return false;
 		return true;
+	}
+	
+	private void añadirRugulos(){
+		//Creo y añado los Rugulos a la GUI.
+		Random r = new Random();
+		int i = 2;
+		while (i<5){
+			int x = r.nextInt(ancho);
+			int y = r.nextInt(alto);
+			if (Mapa[x][y].getPared()==null){
+				Rugulo rug = new Rugulo(this, Mapa[x][y]);
+				misEnemigos.add(rug);
+				Mapa[x][y].agregarEnemigo(rug);
+				gui.add(rug.getGrafico());
+				threadE[i] = new ThreadEnemigo(rug);
+				threadE[i].start();	
+				rug.setPosThread(i);
+				i++;
+			}
+		}
+	}
+	private void añadirAltairs(){
+		Random r = new Random();
+		int i = 0;
+		while (i<2){
+			int x = r.nextInt(ancho);
+			int y = r.nextInt(alto);
+			if (Mapa[x][y].getPared()==null){
+				Altair alt = new Altair(this, Mapa[x][y]);
+				misEnemigos.add(alt);
+				Mapa[x][y].agregarEnemigo(alt);
+				gui.add(alt.getGrafico());
+				threadE[i] = new ThreadEnemigo(alt);
+				threadE[i].start();
+				alt.setPosThread(i);
+				i++;
+			}
+		}
 	}
 	
 	/**
@@ -214,6 +236,16 @@ public class Nivel {
 			this.threadB = null;
 		}
 	}
+	
+	public void destruirEnemigo(Enemigo e){
+		if (threadE[e.getPosThread()]!=null){
+			threadE[e.getPosThread()].destruir();
+			threadE[e.getPosThread()]=null;
+		}
+			
+	}
+	
+
 	
 	
 }

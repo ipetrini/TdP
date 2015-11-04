@@ -1,5 +1,8 @@
 package Personajes;
 
+import java.util.Random;
+
+import Graficos.AltairGrafico;
 import Nivel.Celda;
 import Nivel.Nivel;
 
@@ -18,17 +21,47 @@ public class Altair extends Enemigo{
 	 * @param celda
 	 * @param puntaje
 	 */
-	public Altair(int v, boolean d, Nivel n, Celda c, int p) {
-		super(v, d, n, c, p);
+	public Altair(Nivel n, Celda c) {
+		super(2, true, n, c, 15);
+		grafico = new AltairGrafico(miCelda.getX(), miCelda.getY(), velocidad);	
 	}
 
 	public void mover() {
+		Random r = new Random();		
+		int dir = r.nextInt(4);		
+		int direccion = -1;
+		switch (dir) {
+			case 0 :
+				direccion = Celda.UP;
+				break;
+			case 1 :
+				direccion = Celda.DOWN;
+				break;
+			case 2 : 
+				direccion = Celda.LEFT;
+				break;
+			case 3 : 
+				direccion = Celda.RIGHT;
+				break;
+		}
 		
+		miCelda.eliminarEnemigo(this);
+		moverAux(direccion);
 	}
 
-	public void morir() {
-		
+
+	private void moverAux(int dir){
+		Celda next = this.miCelda.getVecina(dir);		
+		if(next != null){
+				if (next.recibirEnemigo(this, dir)){
+					miCelda = next;
+					
+			}					
+		}
+		else
+			miCelda.agregarEnemigo(this);
 	}
+	
 
 
 }

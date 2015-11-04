@@ -24,7 +24,7 @@ public class Indestructible extends Pared{
 	 * @param enemigo
 	 * @return true si lo puede recibir, false en caso contrario.
 	 */
-	public boolean recibirEnemigo(Enemigo e) {
+	public boolean recibirEnemigo(Enemigo e, int dir) {
 		return false;
 	}
 

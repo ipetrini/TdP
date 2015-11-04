@@ -17,7 +17,7 @@ public abstract class Pared {
 	protected ParedGrafica grafico;
 	protected Celda miCelda;
 	
-	public abstract boolean recibirEnemigo(Enemigo e);
+	public abstract boolean recibirEnemigo(Enemigo e, int dir);
 	public abstract boolean recibirBomberman(Bomberman b);
 	public abstract boolean destruir();
 	public JLabel getGrafico(){

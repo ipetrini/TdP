@@ -19,7 +19,7 @@ public class Rugulo extends Enemigo{
 	 * @param celda
 	 */
 	public Rugulo(Nivel n, Celda c) {
-		super(4, false, n, c, 15);
+		super(2, false, n, c, 15);
 		grafico = new RuguloGrafico(miCelda.getX(), miCelda.getY(), velocidad);		
 	}
 
@@ -52,9 +52,6 @@ public class Rugulo extends Enemigo{
 	/**
 	 * Método que produce la muerte del Rugulo.
 	 */
-	public void morir() {
-		
-	}
 	
 	private void moverAux(int dir){
 		Celda next = this.miCelda.getVecina(dir);		

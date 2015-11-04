@@ -16,6 +16,7 @@ public class Destructible extends Pared {
 	 * @param celda
 	 */
 	public Destructible(Celda c){
+		miCelda = c;
 		grafico = new DestructibleGrafica(c.getX(), c.getY());
 	}
 	
@@ -24,9 +25,10 @@ public class Destructible extends Pared {
 	 * @param enemigo
 	 * @return true si lo puede recibir, false en caso contrario.
 	 */
-	public boolean recibirEnemigo(Enemigo e) {
+	public boolean recibirEnemigo(Enemigo e, int dir) {
 		if (e.esDios()){
 			miCelda.agregarEnemigo(e);
+			e.moverGrafico(dir);
 			return true;
 		}
 		return false;
