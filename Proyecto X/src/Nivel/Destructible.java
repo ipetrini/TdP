@@ -52,6 +52,7 @@ public class Destructible extends Pared {
 	 * @return true si lo puede recibir, false en caso contrario.
 	 */
 	public boolean destruir() {
+		grafico.explotar();
 		return true;
 	}
 

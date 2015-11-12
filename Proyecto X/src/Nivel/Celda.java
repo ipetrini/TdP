@@ -193,20 +193,33 @@ public class Celda {
 		/**
 		 * Método que destruye la pared de la celda.
 		 */
-		public void destruirPared(){
-			if(miPared.destruir())
+		public boolean destruirPared(){
+			boolean destruir = miPared.destruir();
+			
+			if(destruir)
 				miPared = null;
+			
+			
+			return true;
 		}
 		
 		/**
 		 * Método que destruye todos los personajes de la celda. En caso de que el bomberman sea dios, no lo destruye.
 		 */
-		public void explotar(){
-			for (Enemigo e: misEnemigos){
-				miNivel.destruirEnemigo(e);
+		public boolean explotar(){
+			try{ 
+				for (Enemigo e: misEnemigos){
+					miNivel.destruirEnemigo(e);
+				}
+				if (miBomberman!=null && !miBomberman.esDios())
+					miNivel.destruirBomberman();
+			
+				return destruirPared();
+				
+			} catch (NullPointerException e ) {
+				return false;
 			}
-			if (miBomberman!=null && !miBomberman.esDios())
-				miNivel.destruirBomberman();
+			
 		}
 			
 		/**
