@@ -38,14 +38,17 @@ public class ThreadEnemigo extends Thread{
 		 * Método que permite la detención del Thread.
 		 */
 		public void detener() {
+			System.out.println("Entro en DETENER");
 			this.interrupt();			
 			this.Detener = true;
+			System.out.println("Entro en DETENER asdasd");
 		}
 		
 		/**
 		 * Método que destruye el enemigo.
 		 */
 		public void destruir() {
+			System.out.println("Entro en DESTRUIR");
 			this.Logica.morir();
 			this.detener();
 			

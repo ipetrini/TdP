@@ -213,7 +213,9 @@ public class Celda {
 				}
 				if (miBomberman!=null && !miBomberman.esDios())
 					miNivel.destruirBomberman();
-			
+				
+				misEnemigos = new ArrayList<Enemigo> ();
+				
 				if (miPared != null) return destruirPared();
 				else return false;
 				
