@@ -2,6 +2,8 @@ package Nivel;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import Personajes.Bomberman;
 import Personajes.Enemigo;
 import PowerUps.PowerUp;
@@ -206,21 +208,20 @@ public class Celda {
 		/**
 		 * Método que destruye todos los personajes de la celda. En caso de que el bomberman sea dios, no lo destruye.
 		 */
-		public boolean explotar(){
+		public boolean explotar(){		
+			Iterator<Enemigo> it = misEnemigos.iterator();
+			while(it.hasNext()){
+				miNivel.destruirEnemigo(it.next());
+				it.remove();
+			}
+			if (miBomberman!=null && !miBomberman.esDios())
+				miNivel.destruirBomberman();
 			
-				for (Enemigo e: misEnemigos){
-					miNivel.destruirEnemigo(e);
-				}
-				if (miBomberman!=null && !miBomberman.esDios())
-					miNivel.destruirBomberman();
-				
-				misEnemigos = new ArrayList<Enemigo> ();
-				
-				if (miPared != null) return destruirPared();
-				else return false;
-				
-			
-			
+			if (miPared != null){
+				destruirPared();
+				return true;
+			}
+			return false;
 		}
 			
 		/**
