@@ -207,18 +207,17 @@ public class Celda {
 		 * Método que destruye todos los personajes de la celda. En caso de que el bomberman sea dios, no lo destruye.
 		 */
 		public boolean explotar(){
-			try{ 
+			
 				for (Enemigo e: misEnemigos){
 					miNivel.destruirEnemigo(e);
 				}
 				if (miBomberman!=null && !miBomberman.esDios())
 					miNivel.destruirBomberman();
 			
-				return destruirPared();
+				if (miPared != null) return destruirPared();
+				else return false;
 				
-			} catch (NullPointerException e ) {
-				return false;
-			}
+			
 			
 		}
 			

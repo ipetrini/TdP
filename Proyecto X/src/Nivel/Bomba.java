@@ -56,19 +56,35 @@ public class Bomba {
 	public void explotar() {
 		grafico.explotar();
 		
-		for (int i = miCelda.getX()-alcance; i<=miCelda.getX()+alcance; i++){
+		//Explota desde X-alcance hasta X
+		for (int i = miCelda.getX()-alcance; i<=miCelda.getX(); i++){
 			Celda vecina = miNivel.getCelda(i, miCelda.getY());
 			if(vecina!=null)
 				vecina.explotar();
 			
 		}
-		
-		for (int j = miCelda.getY()-alcance; j<=miCelda.getY()+alcance; j++){
+		//Explota desde X+1 hasta X+alcance
+		for (int i = miCelda.getX()+1; i<=miCelda.getX()+alcance; i++){
+			Celda vecina = miNivel.getCelda(i, miCelda.getY());
+			if(vecina!=null)
+				vecina.explotar();
+			
+		}
+		//Explota desde Y-alcance hasta Y
+		for (int j = miCelda.getY()-alcance; j<=miCelda.getY(); j++){
 			Celda vecina = miNivel.getCelda(miCelda.getX(), j);
 			if(vecina!=null)
 				vecina.explotar();	
 			
 		}
+		//Explota desde Y+1 hasta Y+alcance
+		for (int j = miCelda.getY()+1; j<=miCelda.getY()+alcance; j++){
+			Celda vecina = miNivel.getCelda(miCelda.getX(), j);
+			if(vecina!=null)
+				vecina.explotar();	
+			
+		}
+		
 		miNivel.getBomberman().aumentarBombas();
 		
 	}
