@@ -55,36 +55,41 @@ public class Bomba {
 	 */
 	public void explotar() {
 		grafico.explotar();
-		
 		//Explota desde X hasta X-alcance
-		for (int i = miCelda.getX(); i>=miCelda.getX()-alcance; i--){
-			
+		for (int i = miCelda.getX(); i>=miCelda.getX()-alcance; i--){			
 			Celda vecina = miNivel.getCelda(i, miCelda.getY());
-			if(vecina!=null)
-				if (vecina.explotar()) break;
-				
-			
+
+			if(vecina!=null){
+				if (vecina.explotar())
+					break;
+			}
+
 		}
+		
 		//Explota desde X+1 hasta X+alcance
 		for (int i = miCelda.getX()+1; i<=miCelda.getX()+alcance; i++){
 			Celda vecina = miNivel.getCelda(i, miCelda.getY());
-			if(vecina!=null)
-				vecina.explotar();
-			
+			if(vecina!=null){
+				if (vecina.explotar())
+					break;	
+			}
 
 		}
 		//Explota desde Y hasta Y-alcance
 		for (int j = miCelda.getY(); j>=miCelda.getY()-alcance; j--){
 			Celda vecina = miNivel.getCelda(miCelda.getX(), j);
-			if(vecina!=null)
-				vecina.explotar();	
-			
+			if(vecina!=null){
+				if (vecina.explotar())
+					break;		
+			}
 		}
 		//Explota desde Y+1 hasta Y+alcance
 		for (int j = miCelda.getY()+1; j<=miCelda.getY()+alcance; j++){
 			Celda vecina = miNivel.getCelda(miCelda.getX(), j);
-			if(vecina!=null)
-				vecina.explotar();	
+			if(vecina!=null){
+				if (vecina.explotar())
+					break;	
+			}
 		
 		}
 		

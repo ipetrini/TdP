@@ -48,7 +48,7 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	public void setPosThread(int i){
-		posThread = 1;
+		posThread = i;
 	}
 	
 	public int getPosThread(){

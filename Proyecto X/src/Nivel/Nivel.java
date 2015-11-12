@@ -10,6 +10,8 @@ import Personajes.Bomberman;
 import Personajes.Enemigo;
 import Personajes.Rugulo;
 import PowerUps.Bombality;
+import PowerUps.Fatality;
+import PowerUps.Masacrality;
 import PowerUps.SpeedUp;
 import Threads.ThreadBomberman;
 import Threads.ThreadEnemigo;
@@ -50,26 +52,6 @@ public class Nivel {
 		gui.add(miBomberman.getGrafico());
 		threadB = new ThreadBomberman(this, gui, miBomberman);
 		threadB.start();
-
-		Random r = new Random();
-		int p = 0;
-		//Agrego el Bombality y el SpeedUp al mapa.
-		while (p<2){
-			int k = r.nextInt(ancho);
-			int j = r.nextInt(alto);
-			if (Mapa[k][j].getPared()==null){
-				if (p==0){
-					Bombality b = new Bombality(Mapa[k][j]);
-					gui.add(b.getGrafico());
-				}
-				else{
-					SpeedUp s = new SpeedUp(Mapa[k][j]);
-					gui.add(s.getGrafico());
-				}
-			p++;
-			}
-		}
-
 		
 	}
 	
@@ -155,6 +137,7 @@ public class Nivel {
 					}				
 			}
 		}
+		agregarPowerUps();
 		//Rellena el mapa con paredes Indestructibles
 		for (int i = 1; i < ancho-1; i++){
 			for (int j = 1; j < alto-1; j++){
@@ -223,6 +206,35 @@ public class Nivel {
 				threadE[i].start();
 				alt.setPosThread(i);
 				i++;
+			}
+		}
+	}
+	
+	private void agregarPowerUps(){
+
+		Random r = new Random();
+		int p = 0;
+		while (p<4){
+			int k = r.nextInt(ancho);
+			int j = r.nextInt(alto);
+			if (Mapa[k][j].getPared()!=null){
+				if (p==0){
+					SpeedUp s = new SpeedUp(Mapa[k][j]);
+					gui.add(s.getGrafico());
+				}
+				else if (p<7){
+					Bombality b = new Bombality(Mapa[k][j]);
+					gui.add(b.getGrafico());
+				}
+				else if (p<10){
+					Fatality f = new Fatality(Mapa[k][j]);
+					gui.add(f.getGrafico());
+				}
+				else{
+					Masacrality m = new Masacrality(Mapa[k][j]);
+					gui.add(m.getGrafico());
+				}					
+			p++;
 			}
 		}
 	}
