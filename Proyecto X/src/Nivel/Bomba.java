@@ -61,7 +61,7 @@ public class Bomba {
 			
 			Celda vecina = miNivel.getCelda(i, miCelda.getY());
 			if(vecina!=null)
-				vecina.explotar();
+				if (vecina.explotar()) break;
 				
 			
 		}
