@@ -50,14 +50,7 @@ public class Nivel {
 		threadE = new ThreadEnemigo[5];
 		crearMapa(gui);
 		
-		//Agrego al Bomberman al Mapa y creo su thread.
-		Celda c = this.getCelda(1, 1);
-		miBomberman = new Bomberman(false, this, Mapa[1][1]);
-		c.setBomberman(miBomberman);
-		gui.add(miBomberman.getGrafico());
-		threadB = new ThreadBomberman(this, gui, miBomberman, miBomberman.getEntidad());
-		threadB.start();
-		
+			
 	}
 	
 	/**
@@ -142,7 +135,15 @@ public class Nivel {
 					}				
 			}
 		}
-		agregarPowerUps();
+		
+		//Agrego al Bomberman al Mapa y creo su thread.
+		Celda c = this.getCelda(1, 1);
+		miBomberman = new Bomberman(false, this, Mapa[1][1]);
+		c.setBomberman(miBomberman);
+		gui.add(miBomberman.getGrafico());
+		threadB = new ThreadBomberman(this, gui, miBomberman, miBomberman.getEntidad());
+		threadB.start();
+	
 		//Rellena el mapa con paredes Indestructibles
 		for (int i = 1; i < ancho-1; i++){
 			for (int j = 1; j < alto-1; j++){
@@ -168,6 +169,7 @@ public class Nivel {
 			}
 		}
 		añadirRugulos();
+		agregarPowerUps();
 		
 	}
 	
@@ -219,27 +221,43 @@ public class Nivel {
 
 		Random r = new Random();
 		int p = 0;
-		while (p<4){
+		while (p<=10){
 			int k = r.nextInt(ancho);
 			int j = r.nextInt(alto);
-			if (Mapa[k][j].getPared()!=null){
-				if (p==0){
-					SpeedUp s = new SpeedUp(Mapa[k][j]);
-					gui.add(s.getGrafico());
+			Celda c = Mapa[k][j];
+			if (c.getPared()!=null && c.getPowerUp() == null){
+				if (p<4){
+					if (c.getPared().puedePowerUp()){
+						SpeedUp s = new SpeedUp(c);
+						c.setPowerUp(s);
+						gui.add(s.getGrafico());
+						p++;
+					}
 				}
 				else if (p<7){
-					Bombality b = new Bombality(Mapa[k][j]);
-					gui.add(b.getGrafico());
+					if (c.getPared().puedePowerUp()){
+						Bombality b = new Bombality(c);
+						c.setPowerUp(b);
+						gui.add(b.getGrafico());
+						p++;
+					}
 				}
 				else if (p<10){
-					Fatality f = new Fatality(Mapa[k][j]);
-					gui.add(f.getGrafico());
+					if (c.getPared().puedePowerUp()){
+						Fatality f = new Fatality(c);
+						c.setPowerUp(f);
+						gui.add(f.getGrafico());
+						p++;
+					}
 				}
 				else{
-					Masacrality m = new Masacrality(Mapa[k][j]);
-					gui.add(m.getGrafico());
+					if (c.getPared().puedePowerUp()){
+						Masacrality m = new Masacrality(c);
+						c.setPowerUp(m);
+						gui.add(m.getGrafico());
+						p++;
+					}
 				}					
-			p++;
 			}
 		}
 	}

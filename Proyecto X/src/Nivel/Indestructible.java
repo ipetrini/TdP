@@ -45,4 +45,8 @@ public class Indestructible extends Pared{
 		return false;
 	}
 
+	public boolean puedePowerUp() {
+		return false;
+	}
+
 }

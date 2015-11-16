@@ -23,6 +23,7 @@ public abstract class Pared {
 	public JLabel getGrafico(){
 		return grafico.getGrafico();
 	}
+	public abstract boolean puedePowerUp();
 	
 
 }

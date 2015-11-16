@@ -57,4 +57,9 @@ public class Destructible extends Pared {
 		return true;
 	}
 
+	@Override
+	public boolean puedePowerUp() {
+		return true;
+	}
+
 }
