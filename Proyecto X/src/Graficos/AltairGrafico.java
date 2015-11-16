@@ -24,6 +24,11 @@ public class AltairGrafico extends EntidadGrafica {
 		this.movimiento[1] = new ImageIcon(this.getClass().getResource("/AltairImagenes/AltairMovimiento.gif"));
 		this.movimiento[2] = new ImageIcon(this.getClass().getResource("/AltairImagenes/AltairMovimiento.gif"));
 		this.movimiento[3] = new ImageIcon(this.getClass().getResource("/AltairImagenes/AltairMovimiento.gif"));
+		this.morir[0] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Morir1.png"));
+		this.morir[1] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Morir2.png"));
+		this.morir[2] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Morir3.png"));
+		this.morir[3] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Morir4.png"));
+		this.morir[4] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Morir5.png"));
 	}
 
 }
