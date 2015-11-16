@@ -15,7 +15,7 @@ public abstract class ParedGrafica {
 	//Atributos
 	protected JLabel grafico;
 	protected Icon normal;
-	protected Icon explosion;
+	protected Icon explosion[];
 	protected Point posicion;
 	protected final int ancho = 32;
 	protected final int alto = 32;	
@@ -28,6 +28,7 @@ public abstract class ParedGrafica {
 	 */
 	protected ParedGrafica(int x, int y){
 		grafico = null;
+		explosion = new Icon[7];
 		posicion = new Point(x * ancho, y * alto);
 	}
 	

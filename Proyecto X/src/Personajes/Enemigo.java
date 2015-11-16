@@ -43,7 +43,7 @@ public abstract class Enemigo extends Personaje {
 	 * Método que permite la muerte de un enemigo.
 	 */
 	public void morir(){
-		grafico.morir();
+		miNivel.getMarcador().aumentarPuntaje(this.puntaje);
 		System.out.println("Enemigo murio");
 	}
 	

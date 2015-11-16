@@ -58,12 +58,10 @@ public class Bomba {
 		//Explota desde X hasta X-alcance
 		for (int i = miCelda.getX(); i>=miCelda.getX()-alcance; i--){			
 			Celda vecina = miNivel.getCelda(i, miCelda.getY());
-
 			if(vecina!=null){
 				if (vecina.explotar())
 					break;
 			}
-
 		}
 		
 		//Explota desde X+1 hasta X+alcance

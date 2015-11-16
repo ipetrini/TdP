@@ -1,5 +1,6 @@
 package Threads;
 
+import Graficos.EntidadGrafica;
 import Personajes.Enemigo;
 
 /**
@@ -9,6 +10,7 @@ import Personajes.Enemigo;
  */
 public class ThreadEnemigo extends Thread{
 		private Enemigo Logica;
+		private EntidadGrafica grafico;
 		
 		//Atributos
 		private volatile boolean Detener;
@@ -17,9 +19,10 @@ public class ThreadEnemigo extends Thread{
 		 * Constructor que inicializa el Thread del enemigo con su implementación lógica.
 		 * @param enemigo
 		 */
-		public ThreadEnemigo(Enemigo logica) {
+		public ThreadEnemigo(Enemigo logica, EntidadGrafica g) {
 			this.Logica  = logica;
 			this.Detener = false;
+			grafico = g;
 		}
 		
 		/**
@@ -31,6 +34,15 @@ public class ThreadEnemigo extends Thread{
 					Thread.sleep(100);					
 					this.Logica.mover();
 				} catch (InterruptedException e) { }
+			}
+			int i = 0;
+			while (i<5){
+				grafico.morir(i);
+				try {
+					Thread.sleep(250);
+				} catch (InterruptedException e) {
+				}
+				i++;
 			}
 		}
 		

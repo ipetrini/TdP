@@ -53,6 +53,7 @@ public class Destructible extends Pared {
 	 */
 	public boolean destruir() {
 		grafico.explotar();
+		miCelda.getMapa().getMarcador().aumentarPuntaje(10);
 		return true;
 	}
 

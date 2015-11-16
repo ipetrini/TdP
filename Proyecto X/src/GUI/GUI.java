@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -8,8 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Nivel.Marcador;
 import Nivel.Nivel;
 import java.awt.Color;
+import java.awt.Component;
 
 /**
  * Frame utilizado para representar la interfaz gráfica del juego Bomberman.
@@ -17,51 +20,66 @@ import java.awt.Color;
  *
  */
 
-public class GUI extends JFrame {
+public class GUI {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private JPanel Mapa;	
+	private JFrame frame;
+	private JPanel Mapa, Marcador;
 	private Nivel nivel;
 	private boolean lock = false;
 	private int direction = -1;
-	/**
-	 * Ejecuta la aplicación.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI frame = new GUI();
-					frame.setVisible(true);
+					GUI f = new GUI();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
+	
 	/**
 	 * Crea el frame.
 	 */
 	public GUI() {
-		addKeyListener(new KeyAdapter() {
+		
+		frame = new JFrame();
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 1000, 516);
+		frame.setVisible(true);
+		frame.setLayout(null);
+		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				accion(arg0);
 			}
 		});
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1010, 456);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			
 		Mapa = new JPanel();
 		Mapa.setBackground(new Color(34, 139, 34));
 		Mapa.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Mapa.setLayout(null);
-		setContentPane(Mapa);
+		Mapa.setBounds(1, 70, 1011, 456);
+		frame.add(Mapa);
+		
+		Marcador = new JPanel();
+		Marcador.setBackground(Color.LIGHT_GRAY);
+		Marcador.setBorder(new EmptyBorder(5, 5, 5, 5));
+		Marcador.setLayout(null);
+		Marcador.setBounds(0, 0, 1000, 100);
+		frame.add(Marcador);
 		nivel = new Nivel(this);
 		System.out.println("La bomba es ingresada con la tecla ESPACIO");
+	
+
+		
 		
 	}
 	
@@ -100,6 +118,13 @@ public class GUI extends JFrame {
 		return this.direction;
 	}
 	
+	public void add(Component c){
+		Mapa.add(c);
+	}
+	
+	public void addMarcador(Component c){
+		Marcador.add(c);
+	}
 
 }
 

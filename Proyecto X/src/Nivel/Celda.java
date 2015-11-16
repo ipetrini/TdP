@@ -4,9 +4,11 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Graficos.ExplosionGrafica;
 import Personajes.Bomberman;
 import Personajes.Enemigo;
 import PowerUps.PowerUp;
+import Threads.ThreadExplosion;
 
 /**
  * Clase que representa la celda.
@@ -25,8 +27,8 @@ public class Celda {
 		protected Nivel miNivel;
 		protected Pared miPared;
 		protected PowerUp miPowerUp;
-		protected int x;
-		protected int y;
+		protected int x, y;
+		protected ThreadExplosion explosion;
 		
 		/**
 		 * Constructor que inicializa la celda con su nivel y su posición.
@@ -153,7 +155,7 @@ public class Celda {
 				}
 			}
 			else {
-				if (this.getBomberman()!=null){
+				if (miBomberman!=null){
 					miNivel.destruirBomberman();
 				}
 				agregarEnemigo(e);
@@ -214,12 +216,16 @@ public class Celda {
 				miNivel.destruirEnemigo(it.next());
 				it.remove();
 			}
-			if (miBomberman!=null && !miBomberman.esDios())
+			if (miBomberman!=null)
 				miNivel.destruirBomberman();
 			
 			if (miPared != null){
 				destruirPared();
 				return true;
+			}
+			else{
+				explosion = new ThreadExplosion(new ExplosionGrafica(x, y, miNivel));
+				explosion.start();				
 			}
 			return false;
 		}

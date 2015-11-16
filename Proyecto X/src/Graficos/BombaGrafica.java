@@ -40,7 +40,7 @@ public class BombaGrafica  {
 	 * Método utilizado para hacer explotar gráficamente la bomba.
 	 */
 	public void explotar (){
-		grafico.setIcon(imagen[1]);
+		grafico.setIcon(null);
 		grafico.setBounds(posicion.x-32, posicion.y-32, ancho*3, alto*3);
 	}
 	

@@ -15,6 +15,7 @@ import PowerUps.Masacrality;
 import PowerUps.SpeedUp;
 import Threads.ThreadBomberman;
 import Threads.ThreadEnemigo;
+import Threads.ThreadTiempo;
 
 /**
  * Clase que representa el nivel del juego.
@@ -27,6 +28,7 @@ public class Nivel {
 	protected ArrayList<Enemigo> misEnemigos;
 	protected ThreadEnemigo[] threadE;
 	protected ThreadBomberman threadB;
+	protected ThreadTiempo tiempo;
 	protected Bomberman miBomberman;
 	protected Celda[][] Mapa;
 	protected Marcador miMarcador;
@@ -34,23 +36,26 @@ public class Nivel {
 	protected final int alto = 13;
 	protected GUI gui;
 	
+	
 	/**
 	 * Constructor que inicializa la interfaz gráfica del juego con sus respectivos personajes y celdas.
 	 * @param frame
 	 */
 	public Nivel(GUI gui){
 		this.gui = gui;
+		miMarcador = new Marcador(this);
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.
 		misEnemigos = new ArrayList<Enemigo>();
 		threadE = new ThreadEnemigo[5];
 		crearMapa(gui);
+		
 		//Agrego al Bomberman al Mapa y creo su thread.
 		Celda c = this.getCelda(1, 1);
 		miBomberman = new Bomberman(false, this, Mapa[1][1]);
 		c.setBomberman(miBomberman);
 		gui.add(miBomberman.getGrafico());
-		threadB = new ThreadBomberman(this, gui, miBomberman);
+		threadB = new ThreadBomberman(this, gui, miBomberman, miBomberman.getEntidad());
 		threadB.start();
 		
 	}
@@ -184,7 +189,7 @@ public class Nivel {
 				misEnemigos.add(rug);
 				Mapa[x][y].agregarEnemigo(rug);
 				gui.add(rug.getGrafico());
-				threadE[i] = new ThreadEnemigo(rug);
+				threadE[i] = new ThreadEnemigo(rug, rug.getEntidad());
 				threadE[i].start();	
 				rug.setPosThread(i);
 				i++;
@@ -202,7 +207,7 @@ public class Nivel {
 				misEnemigos.add(alt);
 				Mapa[x][y].agregarEnemigo(alt);
 				gui.add(alt.getGrafico());
-				threadE[i] = new ThreadEnemigo(alt);
+				threadE[i] = new ThreadEnemigo(alt, alt.getEntidad());
 				threadE[i].start();
 				alt.setPosThread(i);
 				i++;
@@ -243,9 +248,11 @@ public class Nivel {
 	 * Método que destruye el bomberman del juego.
 	 */
 	public void destruirBomberman() {
-		if(this.threadB != null){
-			this.threadB.destruir();
-			this.threadB = null;
+		if (!miBomberman.esDios()){
+			if(this.threadB != null){
+				this.threadB.destruir();
+				this.threadB = null;
+			}
 		}
 	}
 	

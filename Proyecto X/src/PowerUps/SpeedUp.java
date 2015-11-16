@@ -28,6 +28,7 @@ public class SpeedUp extends PowerUp {
 		b.velocidad2X();
 		System.out.println("Agarré Power Up - Speed Up");
 		grafico.desaparecer();
+		b.getNivel().getMarcador().aumentarPuntaje(30);
 	}
 	
 

@@ -75,6 +75,10 @@ public abstract class Personaje {
 		return grafico.getGrafico();
 	}
 	
+	public EntidadGrafica getEntidad(){
+		return grafico;
+	}
+	
 	/**
 	 * Método que se encarga de mover el grafico del personaje.
 	 * @param direccion

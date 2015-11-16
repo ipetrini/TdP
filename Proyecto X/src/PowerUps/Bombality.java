@@ -28,6 +28,8 @@ public class Bombality extends PowerUp {
 		b.aumentarBombas();
 		System.out.println("Agarré Power Up - Bombality");
 		grafico.desaparecer();
+		b.getNivel().getMarcador().aumentarPuntaje(35);
+
 	}
 
 }

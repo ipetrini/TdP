@@ -28,6 +28,8 @@ public class Fatality extends PowerUp{
 		b.duplicarAlcance();
 		System.out.println("Agarré Power Up - Fatality");
 		grafico.desaparecer();
+		b.getNivel().getMarcador().aumentarPuntaje(35);
+
 	}
 
 }

@@ -3,6 +3,8 @@ package Graficos;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Threads.ThreadDestructible;
+
 /**
  * Clase utilizada para representar la gráfica de la pared destructible.
  * @author Tomas Perotti - Iván Petrini
@@ -10,7 +12,9 @@ import javax.swing.JLabel;
  */
 
 public class DestructibleGrafica extends ParedGrafica {
-
+	
+	protected ThreadDestructible thread;
+	
 	//Constructor
 	/**
 	 * Constructor que inicializa la pared Destructible con su posición.
@@ -20,7 +24,14 @@ public class DestructibleGrafica extends ParedGrafica {
 	public DestructibleGrafica(int x, int y){
 		super(x, y);
 		this.normal = new ImageIcon(this.getClass().getResource("/ParedImagenes/Destructible.png"));
-		this.explosion = new ImageIcon(this.getClass().getResource("/ParedImagenes/ExplosionPared.gif"));
+		this.explosion[0] = new ImageIcon(this.getClass().getResource("/ParedImagenes/1.png"));
+		this.explosion[1] = new ImageIcon(this.getClass().getResource("/ParedImagenes/2.png"));
+		this.explosion[2] = new ImageIcon(this.getClass().getResource("/ParedImagenes/3.png"));
+		this.explosion[3] = new ImageIcon(this.getClass().getResource("/ParedImagenes/4.png"));
+		this.explosion[4] = new ImageIcon(this.getClass().getResource("/ParedImagenes/5.png"));
+		this.explosion[5] = new ImageIcon(this.getClass().getResource("/ParedImagenes/6.png"));
+		this.explosion[6] = new ImageIcon(this.getClass().getResource("/ParedImagenes/7.png"));
+
 		
 	}
 	
@@ -39,12 +50,12 @@ public class DestructibleGrafica extends ParedGrafica {
 	 * Método utilizado para explotar la pared destructible.
 	 */
 	public void explotar(){
-		this.grafico.setIcon(explosion);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}		
+		thread = new ThreadDestructible(this);
+		thread.start();
+	}
+	
+	public void cambiarExplosion(int i){
+		grafico.setIcon(explosion[i]);
 	}
 	
 

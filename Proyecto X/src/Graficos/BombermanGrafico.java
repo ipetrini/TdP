@@ -26,7 +26,12 @@ public class BombermanGrafico extends EntidadGrafica {
 		this.movimiento[1] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/GifAbajo.gif"));
 		this.movimiento[2] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/GifIzquierda.gif"));
 		this.movimiento[3] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/GifDerecha.gif"));
-		morir = new ImageIcon(this.getClass().getResource("/BombermanImagenes/GifMorir.gif"));
+		morir[0] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/Morir1.png"));
+		morir[1] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/Morir2.png"));
+		morir[2] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/Morir3.png"));
+		morir[3] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/Morir4.png"));
+		morir[4] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/Morir5.png"));
+
 
 	}
 	

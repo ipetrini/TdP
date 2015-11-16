@@ -18,7 +18,7 @@ public abstract class EntidadGrafica {
 	protected JLabel grafico;
 	protected Icon imagen[];
 	protected Icon movimiento[];
-	protected Icon morir;
+	protected Icon morir[];
 	protected Point posicion;
 	protected final int ancho = 32;
 	protected final int alto = 32;	
@@ -34,7 +34,8 @@ public abstract class EntidadGrafica {
 		imagen = new Icon[4];
 		movimiento = new Icon[4];
 		posicion = new Point(x * ancho, y * alto);
-		velocidad = v;				
+		velocidad = v;		
+		morir = new Icon[5];
 	}
 	
 	/**
@@ -98,8 +99,8 @@ public abstract class EntidadGrafica {
 	/**
 	 * Método utilizado para destruir la entidad gráfica.
 	 */
-	public void morir(){
-		grafico.setIcon(morir);		
+	public void morir(int i){
+		grafico.setIcon(morir[i]);		
 	}
 	
 	/**
