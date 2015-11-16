@@ -5,7 +5,9 @@ import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -26,7 +28,8 @@ public class GUI {
 	 * 
 	 */
 	private JFrame frame;
-	private JPanel Mapa, Marcador;
+	private JPanel Mapa, Marcador, Ayuda;
+	private JLabel imagen;
 	private Nivel nivel;
 	private boolean lock = false;
 	private int direction = -1;
@@ -50,7 +53,7 @@ public class GUI {
 		
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(0, 0, 1000, 516);
+		frame.setBounds(0, 0, 1196, 516);
 		frame.setVisible(true);
 		frame.setLayout(null);
 		frame.addKeyListener(new KeyAdapter() {
@@ -66,19 +69,23 @@ public class GUI {
 		Mapa.setBackground(new Color(34, 139, 34));
 		Mapa.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Mapa.setLayout(null);
-		Mapa.setBounds(1, 70, 1011, 456);
+		Mapa.setBounds(1, 70, 991, 456);
 		frame.add(Mapa);
 		
 		Marcador = new JPanel();
 		Marcador.setBackground(Color.LIGHT_GRAY);
 		Marcador.setBorder(new EmptyBorder(5, 5, 5, 5));
 		Marcador.setLayout(null);
-		Marcador.setBounds(0, 0, 1000, 100);
+		Marcador.setBounds(0, 0, 991, 100);
 		frame.add(Marcador);
 		nivel = new Nivel(this);
 		System.out.println("La bomba es ingresada con la tecla ESPACIO");
 	
-
+		imagen = new JLabel();
+		imagen.setBounds(991, 0, 198, 516);
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/GUI/Ayuda.png")));
+		frame.add(imagen);
+		
 		
 		
 	}
