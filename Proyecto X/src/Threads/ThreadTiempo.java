@@ -24,26 +24,26 @@ public class ThreadTiempo extends Thread {
 			s=m=h=0;
 			
 			tiempo = new JLabel("Tiempo");
-			tiempo.setBounds(20, 10, 200, 50);
+			tiempo.setBounds(160, 10, 200, 50);
 			tiempo.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
 			tiempo.setForeground(Color.WHITE);
 			gui.addMarcador(tiempo);
 			
 			sombraTiempo = new JLabel("Tiempo");
-			sombraTiempo.setBounds(21, 13, 200, 50);
+			sombraTiempo.setBounds(161, 13, 200, 50);
 			sombraTiempo.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
 			sombraTiempo.setForeground(Color.BLACK);
 			gui.addMarcador(sombraTiempo);
 			
 			contador = new JLabel();
-			contador.setBounds(150, 10, 200, 50);
+			contador.setBounds(300, 10, 200, 50);
 			contador.setForeground(Color.WHITE);
 			contador.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
 			contador.setText(String.format("%02d",h)+":"+String.format("%02d",m)+":"+String.format("%02d",s));
 			gui.addMarcador(contador);
 			
 			sombraContador = new JLabel();
-			sombraContador.setBounds(151, 13, 200, 50);
+			sombraContador.setBounds(301, 13, 200, 50);
 			sombraContador.setForeground(Color.BLACK);
 			sombraContador.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
 			sombraContador.setText(String.format("%02d",h)+":"+String.format("%02d",m)+":"+String.format("%02d",s));

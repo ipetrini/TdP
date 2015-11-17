@@ -27,25 +27,25 @@ public class Marcador extends Thread {
 		tiempo.start();
 		puntaje = 0;
 		puntajelbl = new JLabel("Puntaje");
-		puntajelbl.setBounds(450,10 , 200, 50);
+		puntajelbl.setBounds(550,10 , 200, 50);
 		puntajelbl.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
 		puntajelbl.setForeground(Color.WHITE);
 		gui.addMarcador(puntajelbl);
 		
 		sombrapuntaje = new JLabel("Puntaje");
-		sombrapuntaje.setBounds(451,13 , 200, 50);
+		sombrapuntaje.setBounds(551,13 , 200, 50);
 		sombrapuntaje.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
 		sombrapuntaje.setForeground(Color.BLACK);
 		gui.addMarcador(sombrapuntaje);
 		
 		puntos = new JLabel(""+puntaje);
-		puntos.setBounds(600, 11, 200, 50);
+		puntos.setBounds(700, 11, 200, 50);
 		puntos.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
 		puntos.setForeground(Color.WHITE);
 		gui.addMarcador(puntos);
 		
 		sombrapuntos = new JLabel(""+puntaje);
-		sombrapuntos.setBounds(602, 14, 200, 50);
+		sombrapuntos.setBounds(702, 14, 200, 50);
 		sombrapuntos.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
 		sombrapuntos.setForeground(Color.BLACK);
 		gui.addMarcador(sombrapuntos);
