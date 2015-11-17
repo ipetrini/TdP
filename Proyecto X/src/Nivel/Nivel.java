@@ -35,6 +35,7 @@ public class Nivel {
 	protected final int ancho = 31;
 	protected final int alto = 13;
 	protected GUI gui;
+	protected int contDestructibles;
 	
 	
 	/**
@@ -49,6 +50,7 @@ public class Nivel {
 		misEnemigos = new ArrayList<Enemigo>();
 		threadE = new ThreadEnemigo[5];
 		crearMapa(gui);
+		contDestructibles=5;
 		
 			
 	}
@@ -100,7 +102,7 @@ public class Nivel {
 	 * Método que termina la partida del juego. 
 	 */
 	public void terminarJuego(){
-		
+		gui.terminarJuego();
 	}
 	
 	/**
@@ -272,8 +274,26 @@ public class Nivel {
 				this.threadB = null;
 			}
 		}
+		terminarJuego();
 	}
+	/**
+	 * Método que decrementa la cantidad de celdas destructibles en uno.
+	 */
 	
+	public void celdaDestruida(){
+		miMarcador.decrementarDestructibles();
+	}
+	/**
+	 * Método que retorna la cantidad de celdas destructibles restantes.
+	 * @return
+	 */
+	public int destructiblesLeft() {
+		return contDestructibles;
+	}
+	/**
+	 * Método que destruye al enemigo pasado por parámetro.
+	 * @param enemigo
+	 */
 	public void destruirEnemigo(Enemigo e){
 		if (threadE[e.getPosThread()]!=null){
 			threadE[e.getPosThread()].destruir();
@@ -281,6 +301,8 @@ public class Nivel {
 		}
 			
 	}
+	
+	
 	
 
 	

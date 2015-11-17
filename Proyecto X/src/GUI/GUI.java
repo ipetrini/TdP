@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -125,6 +126,10 @@ public class GUI {
 		return this.direction;
 	}
 	
+	public void terminarJuego() {
+		JOptionPane.showMessageDialog(frame,"Juego terminado","Bomberman",JOptionPane.WARNING_MESSAGE);
+		System.exit(0);
+	}
 	public void add(Component c){
 		Mapa.add(c);
 	}
