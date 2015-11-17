@@ -44,13 +44,14 @@ public class Nivel {
 	 */
 	public Nivel(GUI gui){
 		this.gui = gui;
+		contDestructibles=20;
 		miMarcador = new Marcador(this);
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.
 		misEnemigos = new ArrayList<Enemigo>();
 		threadE = new ThreadEnemigo[5];
 		crearMapa(gui);
-		contDestructibles=5;
+		
 		
 			
 	}
@@ -161,7 +162,7 @@ public class Nivel {
 		//Rellena el mapa con paredes Destructibles.
 		Random r = new Random();
 		int x = 0;
-		while (x<50){
+		while (x<contDestructibles){
 			int i = r.nextInt(ancho);
 			int j = r.nextInt(alto);
 			if (Mapa[i][j].getPared()==null && noBloquea(i,j)){
