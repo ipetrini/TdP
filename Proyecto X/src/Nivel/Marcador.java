@@ -27,7 +27,7 @@ public class Marcador extends Thread {
 		tiempo = new ThreadTiempo(n);
 		tiempo.start();
 		puntaje = 0;
-		contDestructibles = 50;
+		contDestructibles = n.destructiblesLeft();
 		puntajelbl = new JLabel("Puntaje");
 		puntajelbl.setBounds(550,10 , 200, 50);
 		puntajelbl.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
