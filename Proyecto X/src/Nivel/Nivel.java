@@ -44,7 +44,7 @@ public class Nivel {
 	 */
 	public Nivel(GUI gui){
 		this.gui = gui;
-		contDestructibles=20;
+		contDestructibles=12;
 		miMarcador = new Marcador(this);
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.

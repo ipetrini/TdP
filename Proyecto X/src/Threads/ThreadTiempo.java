@@ -75,8 +75,8 @@ public class ThreadTiempo extends Thread {
 					}
 					contador.setText(String.format("%02d",h)+":"+String.format("%02d",m)+":"+String.format("%02d",s));
 					sombraContador.setText(String.format("%02d",h)+":"+String.format("%02d",m)+":"+String.format("%02d",s));
-					if (nivel.destructiblesLeft() == 0)  {
-						System.out.println();
+					if (nivel.destructiblesLeft() == 1)  {
+						System.out.println("JUEGO TERMINADO");
 						nivel.terminarJuego();
 					}
 
