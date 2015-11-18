@@ -22,8 +22,8 @@ public class Altair extends Enemigo{
 	 * @param puntaje
 	 */
 	public Altair(Nivel n, Celda c) {
-		super(2, true, n, c, 15);
-		grafico = new AltairGrafico(miCelda.getX(), miCelda.getY(), velocidad);	
+		super(2, true, n, c, 20);
+		grafico = new AltairGrafico(miCelda.getX(), miCelda.getY(), velocidad, miNivel);	
 	}
 
 	public void mover() {

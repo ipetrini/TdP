@@ -130,6 +130,7 @@ public class GUI {
 		JOptionPane.showMessageDialog(frame,"Juego terminado","Bomberman",JOptionPane.WARNING_MESSAGE);
 		System.exit(0);
 	}
+	
 	public void add(Component c){
 		Mapa.add(c);
 	}

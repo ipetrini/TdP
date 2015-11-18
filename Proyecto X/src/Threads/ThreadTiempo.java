@@ -14,16 +14,15 @@ import Nivel.Nivel;
 
 public class ThreadTiempo extends Thread {
 
-		protected int s, m, h, contDestructibles;
-		protected JLabel tiempo, contador, sombraTiempo, sombraContador, destructLeft;
+		protected int s, m, h;
+		protected JLabel tiempo, contador, sombraTiempo, sombraContador;
 		protected volatile boolean seguir;
 		protected GUI gui;
-		protected Nivel nivel;
 		
 		public ThreadTiempo(Nivel n){
 			gui = n.getGUI();
 			s=m=h=0;
-			nivel=n;
+			
 			tiempo = new JLabel("Tiempo");
 			tiempo.setBounds(160, 10, 200, 50);
 			tiempo.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
@@ -50,11 +49,6 @@ public class ThreadTiempo extends Thread {
 			sombraContador.setText(String.format("%02d",h)+":"+String.format("%02d",m)+":"+String.format("%02d",s));
 			gui.addMarcador(sombraContador);
 			
-			/*destructLeft = new JLabel(""+contDestructibles);
-			destructLeft.setBounds(450, 10 , 100, 50);
-			destructLeft.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
-			destructLeft.setForeground(Color.BLACK);
-			gui.addMarcador(destructLeft);*/
 			
 			seguir = true;
 			
@@ -75,10 +69,6 @@ public class ThreadTiempo extends Thread {
 					}
 					contador.setText(String.format("%02d",h)+":"+String.format("%02d",m)+":"+String.format("%02d",s));
 					sombraContador.setText(String.format("%02d",h)+":"+String.format("%02d",m)+":"+String.format("%02d",s));
-					if (nivel.destructiblesLeft() == 0)  {
-						System.out.println();
-						nivel.terminarJuego();
-					}
 
 
 				}

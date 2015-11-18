@@ -2,6 +2,9 @@ package Graficos;
 
 import javax.swing.ImageIcon;
 
+import Nivel.Celda;
+import Nivel.Nivel;
+
 /**
  * Clase utilizada para representar la gráfica del Rugulo.
  * @author Tomas Perotti - Iván Petrini
@@ -14,8 +17,8 @@ public class RuguloGrafico extends EntidadGrafica {
 	 * @param posición x
 	 * @param posición y
 	 */
-	public RuguloGrafico(int x, int y, int v) {
-		super(x, y, v);
+	public RuguloGrafico(int x, int y, int v, Nivel n) {
+		super(x, y, v, n);
 		this.imagen[0] = new ImageIcon(this.getClass().getResource("/RuguloImagenes/normal.png"));
 		this.imagen[1] = new ImageIcon(this.getClass().getResource("/RuguloImagenes/normal.png"));
 		this.imagen[2] = new ImageIcon(this.getClass().getResource("/RuguloImagenes/normal.png"));
@@ -30,7 +33,54 @@ public class RuguloGrafico extends EntidadGrafica {
 		this.morir[3] = new ImageIcon(this.getClass().getResource("/RuguloImagenes/Morir4.png"));
 		this.morir[4] = new ImageIcon(this.getClass().getResource("/RuguloImagenes/Morir5.png"));
 
-
+	}
+	
+	public void mover(int dir){
+		if(grafico != null){
+			cambiarMovimiento(dir);
+			
+			try {
+				switch (dir){
+					case Celda.UP :
+						for(int i = 0; i < alto; i+=velocidad){
+							grafico.setBounds(posicion.x, posicion.y -= velocidad, ancho, alto);
+							colision();
+							Thread.sleep(100);
+						}
+						
+						break;
+					case Celda.DOWN : 
+						for(int i = 0; i < alto; i+=velocidad){
+							grafico.setBounds(posicion.x, posicion.y += velocidad, ancho, alto);
+							colision();
+							Thread.sleep(100);
+						}
+						break;
+					case Celda.RIGHT :
+						for(int i = 0; i < ancho; i+=velocidad){
+							grafico.setBounds(posicion.x += velocidad, posicion.y, ancho, alto);
+							colision();
+							Thread.sleep(100);
+						}
+						break;
+					case Celda.LEFT :
+						for(int i = 0; i < ancho; i+= velocidad){
+							grafico.setBounds(posicion.x -= velocidad, posicion.y, ancho, alto);
+							colision();
+							Thread.sleep(100);
+						}
+						break;
+				}
+				
+			} catch (InterruptedException e) {
+			}
+		cambiarIcono(dir);	
+		}
+	}
+		
+	public void colision(){
+		if (nivel.getBomberman().getEntidad().getBounds().intersects(this.getBounds()))
+			nivel.destruirBomberman();
 	}
 
 }

@@ -55,6 +55,8 @@ public class Destructible extends Pared {
 		grafico.explotar();
 		miCelda.getMapa().getMarcador().aumentarPuntaje(10);
 		miCelda.getMapa().celdaDestruida();
+		if (miCelda.getMapa().destructiblesLeft()==0)
+			miCelda.getMapa().terminarJuego();
 		return true;
 	}
 

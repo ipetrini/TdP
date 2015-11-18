@@ -2,6 +2,10 @@ package Graficos;
 
 import javax.swing.ImageIcon;
 
+import Nivel.Celda;
+import Nivel.Nivel;
+import Personajes.Enemigo;
+
 /**
  * Clase utilizada para representar la gráfica del Bomberman.
  * @author Tomas Perotti - Iván Petrini
@@ -16,8 +20,8 @@ public class BombermanGrafico extends EntidadGrafica {
 	 * @param posición x
 	 * @param posición y
 	 */
-	public BombermanGrafico(int x, int y, int v) {
-		super(x, y, v);
+	public BombermanGrafico(int x, int y, int v, Nivel n) {
+		super(x, y, v, n);
 		this.imagen[0] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/arriba.png"));
 		this.imagen[1] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/abajo.png"));
 		this.imagen[2] = new ImageIcon(this.getClass().getResource("/BombermanImagenes/izquierda.png"));
@@ -34,6 +38,58 @@ public class BombermanGrafico extends EntidadGrafica {
 
 
 	}
+	
+	public void mover(int dir){
+		if(grafico != null){
+			cambiarMovimiento(dir);
+			
+			try {
+				switch (dir){
+					case Celda.UP :
+						for(int i = 0; i < alto; i+=velocidad){
+							grafico.setBounds(posicion.x, posicion.y -= velocidad, ancho, alto);
+							colision();
+							Thread.sleep(100);
+						}
+						
+						break;
+					case Celda.DOWN : 
+						for(int i = 0; i < alto; i+=velocidad){
+							grafico.setBounds(posicion.x, posicion.y += velocidad, ancho, alto);
+							colision();
+							Thread.sleep(100);
+						}
+						break;
+					case Celda.RIGHT :
+						for(int i = 0; i < ancho; i+=velocidad){
+							grafico.setBounds(posicion.x += velocidad, posicion.y, ancho, alto);
+							colision();
+							Thread.sleep(100);
+						}
+						break;
+					case Celda.LEFT :
+						for(int i = 0; i < ancho; i+= velocidad){
+							grafico.setBounds(posicion.x -= velocidad, posicion.y, ancho, alto);
+							colision();
+							Thread.sleep(100);
+						}
+						break;
+				}
+				
+			} catch (InterruptedException e) {
+			}
+		cambiarIcono(dir);	
+		}
+	}
+	
+	
+	public void colision(){
+		for (Enemigo e : nivel.getEnemigos()){
+			if (e.getEntidad().getBounds().intersects(this.getBounds()))
+				nivel.destruirBomberman();
+		}
+	}
+	
 	
 
 }
