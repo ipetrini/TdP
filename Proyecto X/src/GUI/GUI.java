@@ -29,7 +29,7 @@ public class GUI {
 	 * 
 	 */
 	private JFrame frame;
-	private JPanel Mapa, Marcador, Ayuda;
+	private JPanel Mapa, Marcador;
 	private JLabel imagen;
 	private Nivel nivel;
 	private boolean lock = false;
@@ -127,7 +127,14 @@ public class GUI {
 	}
 	
 	public void terminarJuego() {
-		JOptionPane.showMessageDialog(frame,"Juego terminado","Bomberman",JOptionPane.WARNING_MESSAGE);
+		ImageIcon GameOver = new ImageIcon(this.getClass().getResource("/GUI/GameOver.png"));
+		JOptionPane.showOptionDialog(frame, "", "Perdiste!", JOptionPane.YES_NO_OPTION, 1, GameOver, new String[]{"Salir"},0 );
+		System.exit(0);
+	}
+	
+	public void ganarJuego(){
+		ImageIcon victory = new ImageIcon(this.getClass().getResource("/GUI/Victory.png"));
+		JOptionPane.showOptionDialog(frame, "", "Ganaste!", JOptionPane.YES_NO_OPTION, 1, victory, new String[]{"Salir"},0 );
 		System.exit(0);
 	}
 	

@@ -71,7 +71,6 @@ public class ThreadTiempo extends Thread {
 					sombraContador.setText(String.format("%02d",h)+":"+String.format("%02d",m)+":"+String.format("%02d",s));
 
 
-
 				}
 			}
 			catch (InterruptedException e){

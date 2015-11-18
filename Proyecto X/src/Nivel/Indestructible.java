@@ -33,7 +33,7 @@ public class Indestructible extends Pared{
 	 * @param enemigo
 	 * @return true si lo puede recibir, false en caso contrario.
 	 */
-	public boolean recibirBomberman(Bomberman b) {
+	public boolean recibirBomberman(Bomberman b, int dir) {
 		return false;
 	}
 

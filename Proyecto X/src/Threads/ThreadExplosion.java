@@ -17,7 +17,7 @@ public class ThreadExplosion extends Thread {
 			grafico.cambiarGrafico(i);
 			i++;
 			try {
-				Thread.sleep(100);
+				Thread.sleep(75);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

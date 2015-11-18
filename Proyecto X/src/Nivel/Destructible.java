@@ -39,9 +39,10 @@ public class Destructible extends Pared {
 	 * @param enemigo
 	 * @return true si lo puede recibir, false en caso contrario.
 	 */
-	public boolean recibirBomberman(Bomberman b) {
+	public boolean recibirBomberman(Bomberman b, int dir) {
 		if (b.esDios()){
 			miCelda.setBomberman(b);
+			b.moverGrafico(dir);
 			return true;
 		}
 		return false;
@@ -56,7 +57,7 @@ public class Destructible extends Pared {
 		miCelda.getMapa().getMarcador().aumentarPuntaje(10);
 		miCelda.getMapa().celdaDestruida();
 		if (miCelda.getMapa().destructiblesLeft()==0)
-			miCelda.getMapa().terminarJuego();
+			miCelda.getMapa().ganarJuego();
 		return true;
 	}
 

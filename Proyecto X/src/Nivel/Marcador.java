@@ -3,6 +3,7 @@ package Nivel;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import GUI.GUI;
@@ -20,7 +21,7 @@ public class Marcador extends Thread {
 	protected int puntaje;
 	protected int contDestructibles;
 	ThreadTiempo tiempo;
-	protected JLabel puntajelbl, sombrapuntaje, puntos, sombrapuntos, destructLeft;
+	protected JLabel puntajelbl, sombrapuntaje, puntos, sombrapuntos, destructLeft, destructLeftSombra, destructImagen;
 		
 	public Marcador (Nivel n) {	
 		gui = n.getGUI();
@@ -53,11 +54,21 @@ public class Marcador extends Thread {
 		gui.addMarcador(sombrapuntos);
 		
 		destructLeft = new JLabel(""+contDestructibles);
-		destructLeft.setBounds(450, 10 , 100, 50);
+		destructLeft.setBounds(900, 10 , 100, 50);
 		destructLeft.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
-		destructLeft.setForeground(Color.BLACK);
+		destructLeft.setForeground(Color.WHITE);
 		gui.addMarcador(destructLeft);
 		
+		destructLeftSombra = new JLabel(""+contDestructibles);
+		destructLeftSombra.setBounds(902, 13 , 100, 50);
+		destructLeftSombra.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
+		destructLeftSombra.setForeground(Color.BLACK);
+		gui.addMarcador(destructLeftSombra);
+		
+		destructImagen = new JLabel();
+		destructImagen.setIcon(new ImageIcon(this.getClass().getResource("/ParedImagenes/Destructible.png")));
+		destructImagen.setBounds(850, 10, 50, 50);
+		gui.addMarcador(destructImagen);
 	}
 		
 	

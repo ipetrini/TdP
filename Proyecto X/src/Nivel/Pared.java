@@ -18,7 +18,7 @@ public abstract class Pared {
 	protected Celda miCelda;
 	
 	public abstract boolean recibirEnemigo(Enemigo e, int dir);
-	public abstract boolean recibirBomberman(Bomberman b);
+	public abstract boolean recibirBomberman(Bomberman b, int dir);
 	public abstract boolean destruir();
 	public JLabel getGrafico(){
 		return grafico.getGrafico();

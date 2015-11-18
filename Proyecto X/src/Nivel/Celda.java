@@ -171,17 +171,17 @@ public class Celda {
 		 */
 		public boolean recibirBomberman(Bomberman b, int dir){
 			if (miPared!=null){
-				if (miPared.recibirBomberman(b)){
+				if (miPared.recibirBomberman(b, dir)){
 					return true;
 				}
 			}
 			else{
 				miBomberman=b;
-				b.moverGrafico(dir);
 				if (miPowerUp!=null){
 					miPowerUp.activar(b);
 					miPowerUp=null;
 				}
+				b.moverGrafico(dir);
 				return true;
 			}			
 			return false;
@@ -242,6 +242,8 @@ public class Celda {
 					return null;
 			}
 		}
+		
+	
 		
 		
 }

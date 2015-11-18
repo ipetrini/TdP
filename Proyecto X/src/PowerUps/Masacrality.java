@@ -31,7 +31,6 @@ public class Masacrality extends PowerUp {
 	public void activar(Bomberman b) {
 		b.setDios(true);
 		thread = new ThreadMasacrality(b);
-		thread.start();		
 		System.out.println("Agarré Power Up - Masacrality");
 		grafico.desaparecer();
 		b.getNivel().getMarcador().aumentarPuntaje(50);

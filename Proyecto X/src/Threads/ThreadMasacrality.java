@@ -8,6 +8,7 @@ public class ThreadMasacrality extends Thread {
 	
 	public ThreadMasacrality(Bomberman b){
 		this.b = b;
+		start();
 	}
 	
 	/**
