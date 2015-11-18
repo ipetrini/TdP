@@ -44,6 +44,7 @@ public abstract class Enemigo extends Personaje {
 	 */
 	public void morir(){
 		miNivel.getMarcador().aumentarPuntaje(this.puntaje);
+		miCelda.eliminarEnemigo(this);
 		System.out.println("Enemigo murio");
 	}
 	

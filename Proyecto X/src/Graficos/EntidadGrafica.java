@@ -1,10 +1,12 @@
 package Graficos;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import Nivel.Celda;
+import Nivel.Nivel;
 
 /**
  * Clase abstracta que representa una entidad gráfica
@@ -23,6 +25,7 @@ public abstract class EntidadGrafica {
 	protected final int ancho = 32;
 	protected final int alto = 32;	
 	protected int velocidad;
+	protected Nivel nivel;
 	
 	//Constructor
 	/**
@@ -30,12 +33,13 @@ public abstract class EntidadGrafica {
 	 * @param posición x
 	 * @param posición y
 	 */
-	protected EntidadGrafica(int x, int y, int v){		
+	protected EntidadGrafica(int x, int y, int v, Nivel n){		
 		imagen = new Icon[4];
 		movimiento = new Icon[4];
 		posicion = new Point(x * ancho, y * alto);
 		velocidad = v;		
 		morir = new Icon[5];
+		nivel = n;
 	}
 	
 	/**
@@ -107,7 +111,8 @@ public abstract class EntidadGrafica {
 	 * Método utilizado para mover la entidad gráfica.
 	 * @param dirección del movimiento.
 	 */
-	public void mover(int dir){
+	
+	/*public void mover(int dir){
 		if(grafico != null){
 			cambiarMovimiento(dir);
 			
@@ -145,6 +150,7 @@ public abstract class EntidadGrafica {
 		cambiarIcono(dir);	
 		}
 	}
+	*/
 	
 	/**
 	 * Método utilizado para obtener la imagen de la entidad gráfica.
@@ -157,5 +163,12 @@ public abstract class EntidadGrafica {
 		}
 		return this.grafico;
 	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(posicion.x, posicion.y, 20, 20);
+	}
+	
+	public abstract void mover(int i);
+	
 	
 }

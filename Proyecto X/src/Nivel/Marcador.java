@@ -26,8 +26,8 @@ public class Marcador extends Thread {
 		gui = n.getGUI();
 		tiempo = new ThreadTiempo(n);
 		tiempo.start();
-		puntaje = 50;
-		contDestructibles=n.destructiblesLeft();
+		puntaje = 0;
+		contDestructibles = 50;
 		puntajelbl = new JLabel("Puntaje");
 		puntajelbl.setBounds(550,10 , 200, 50);
 		puntajelbl.setFont(new Font("OCR A Std", Font.BOLD | Font.ITALIC, 25));
@@ -60,6 +60,8 @@ public class Marcador extends Thread {
 		
 	}
 		
+	
+	
 	public void aumentarPuntaje(int i) {
 		puntaje+=i;
 		puntos.setText(""+puntaje);
@@ -73,6 +75,7 @@ public class Marcador extends Thread {
 	public void setPuntaje(int i) {
 		puntaje=i;
 	}
+
 	/**
 	 * Decremento la cantidad de destructibles faltantes en 1.
 	 */
@@ -80,6 +83,5 @@ public class Marcador extends Thread {
 		contDestructibles--;
 		destructLeft.setText(""+contDestructibles);
 	}
-
 
 }

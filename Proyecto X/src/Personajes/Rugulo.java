@@ -20,7 +20,7 @@ public class Rugulo extends Enemigo{
 	 */
 	public Rugulo(Nivel n, Celda c) {
 		super(2, false, n, c, 15);
-		grafico = new RuguloGrafico(miCelda.getX(), miCelda.getY(), velocidad);		
+		grafico = new RuguloGrafico(miCelda.getX(), miCelda.getY(), velocidad, miNivel);		
 	}
 
 	/**

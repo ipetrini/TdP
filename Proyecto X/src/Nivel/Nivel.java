@@ -9,6 +9,7 @@ import Personajes.Altair;
 import Personajes.Bomberman;
 import Personajes.Enemigo;
 import Personajes.Rugulo;
+import Personajes.Sirius;
 import PowerUps.Bombality;
 import PowerUps.Fatality;
 import PowerUps.Masacrality;
@@ -44,14 +45,12 @@ public class Nivel {
 	 */
 	public Nivel(GUI gui){
 		this.gui = gui;
-		contDestructibles=12;
 		miMarcador = new Marcador(this);
 		Mapa = new Celda[ancho][alto];
 		//Creo la lista de enemigos y el arreglo de Threads para los enemigos.
 		misEnemigos = new ArrayList<Enemigo>();
-		threadE = new ThreadEnemigo[5];
+		threadE = new ThreadEnemigo[6];
 		crearMapa(gui);
-		
 		
 			
 	}
@@ -70,6 +69,10 @@ public class Nivel {
 	 */
 	public Bomberman getBomberman(){
 		return miBomberman;
+	}
+	
+	public ArrayList<Enemigo> getEnemigos(){
+		return misEnemigos;
 	}
 	/**
 	 * Método que retorna el frame del juego.
@@ -156,13 +159,12 @@ public class Nivel {
 				}
 			}
 		}
-		//Añado Altairs
 		añadirAltairs();
 
 		//Rellena el mapa con paredes Destructibles.
 		Random r = new Random();
 		int x = 0;
-		while (x<contDestructibles){
+		while (x<50){
 			int i = r.nextInt(ancho);
 			int j = r.nextInt(alto);
 			if (Mapa[i][j].getPared()==null && noBloquea(i,j)){
@@ -172,12 +174,13 @@ public class Nivel {
 			}
 		}
 		añadirRugulos();
+		añadirSirius();
 		agregarPowerUps();
 		
 	}
 	
 	private boolean noBloquea(int i, int j){
-		if ((i==1 &&j==1) || (i==1 && j==2) || (i==2 && j==1))
+		if ((i==1 &&j==1) || (i==1 && j==2) || (i==2 && j==1) || (i==28 && j==11) || (i==29 && j==10) || (i==29 && j==11))
 			return false;
 		return true;
 	}
@@ -218,6 +221,16 @@ public class Nivel {
 				i++;
 			}
 		}
+	}
+	
+	private void añadirSirius(){
+		Sirius s = new Sirius(this, Mapa[29][11]);
+		misEnemigos.add(s);
+		Mapa[29][11].agregarEnemigo(s);
+		gui.add(s.getGrafico());
+		threadE[5] = new ThreadEnemigo(s, s.getEntidad());
+		threadE[5].start();
+		s.setPosThread(5);
 	}
 	
 	private void agregarPowerUps(){
@@ -278,32 +291,31 @@ public class Nivel {
 		terminarJuego();
 	}
 	/**
-	 * Método que decrementa la cantidad de celdas destructibles en uno.
-	 */
-	
-	public void celdaDestruida(){
-		miMarcador.decrementarDestructibles();
-	}
-	/**
-	 * Método que retorna la cantidad de celdas destructibles restantes.
-	 * @return
-	 */
-	public int destructiblesLeft() {
-		return contDestructibles;
-	}
-	/**
 	 * Método que destruye al enemigo pasado por parámetro.
 	 * @param enemigo
-	 */
+	*/
 	public void destruirEnemigo(Enemigo e){
 		if (threadE[e.getPosThread()]!=null){
 			threadE[e.getPosThread()].destruir();
 			threadE[e.getPosThread()]=null;
+			eliminarEnemigo(e);
 		}
 			
 	}
 	
+	public void celdaDestruida(){
+		miMarcador.decrementarDestructibles();
+		contDestructibles--;
+	}
 	
+	/**
+	* Método que retorna la cantidad de celdas destructibles restantes.
+	* @return
+	*/
+	public int destructiblesLeft() {
+		return contDestructibles;
+	}
+
 	
 
 	

@@ -155,9 +155,6 @@ public class Celda {
 				}
 			}
 			else {
-				if (miBomberman!=null){
-					miNivel.destruirBomberman();
-				}
 				agregarEnemigo(e);
 				e.moverGrafico(dir);
 				return true;
@@ -179,10 +176,6 @@ public class Celda {
 				}
 			}
 			else{
-				if (!this.getEnemigos().isEmpty()){					
-					System.out.println("Me mori.");
-					miNivel.destruirBomberman();
-				}
 				miBomberman=b;
 				b.moverGrafico(dir);
 				if (miPowerUp!=null){
