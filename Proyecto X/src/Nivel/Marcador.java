@@ -93,6 +93,7 @@ public class Marcador extends Thread {
 	public void decrementarDestructibles(){
 		contDestructibles--;
 		destructLeft.setText(""+contDestructibles);
+		destructLeftSombra.setText(""+contDestructibles);
 	}
 
 }
