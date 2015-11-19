@@ -26,6 +26,7 @@ public abstract class EntidadGrafica {
 	protected final int alto = 32;	
 	protected int velocidad;
 	protected Nivel nivel;
+	protected int speeds;
 	
 	//Constructor
 	/**
@@ -40,6 +41,7 @@ public abstract class EntidadGrafica {
 		velocidad = v;		
 		morir = new Icon[5];
 		nivel = n;
+		speeds = 0;
 	}
 	
 	/**
@@ -59,7 +61,16 @@ public abstract class EntidadGrafica {
 	}
 	
 	public void duplicarVelocidad(){
-		velocidad *= 2;
+		if (speeds == 0){
+			velocidad -= 15;
+			speeds++;
+		}
+		if (speeds == 1){
+			velocidad -= 15;
+			speeds++;
+		}
+		else
+			velocidad -= 5;
 	}
 		
 	protected void cambiarIcono(int d){

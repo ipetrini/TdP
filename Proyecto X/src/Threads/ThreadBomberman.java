@@ -3,7 +3,6 @@ package Threads;
 import Nivel.Nivel;
 import Personajes.Bomberman;
 import GUI.GUI;
-import Graficos.BombermanGrafico;
 import Graficos.EntidadGrafica;
 
 /**

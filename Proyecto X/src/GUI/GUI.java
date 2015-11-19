@@ -1,18 +1,14 @@
 package GUI;
 
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import Nivel.Marcador;
 import Nivel.Nivel;
 import java.awt.Color;
 import java.awt.Component;
@@ -39,6 +35,7 @@ public class GUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					@SuppressWarnings("unused")
 					GUI f = new GUI();
 				} catch (Exception e) {
 					e.printStackTrace();

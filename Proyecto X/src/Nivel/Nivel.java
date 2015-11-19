@@ -53,7 +53,6 @@ public class Nivel {
 		threadE = new ThreadEnemigo[6];
 		crearMapa(gui);
 		
-			
 	}
 	
 	/**

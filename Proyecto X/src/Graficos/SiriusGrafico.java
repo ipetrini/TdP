@@ -43,7 +43,7 @@ public class SiriusGrafico extends EntidadGrafica {
 					case Celda.UP :
 						for(int i = 0; i < alto; i+=velocidad){
 							grafico.setBounds(posicion.x, posicion.y -= velocidad, ancho, alto);
-						//	colision();
+							colision();
 							Thread.sleep(100);
 						}
 						
@@ -51,21 +51,21 @@ public class SiriusGrafico extends EntidadGrafica {
 					case Celda.DOWN : 
 						for(int i = 0; i < alto; i+=velocidad){
 							grafico.setBounds(posicion.x, posicion.y += velocidad, ancho, alto);
-							//colision();
+							colision();
 							Thread.sleep(100);
 						}
 						break;
 					case Celda.RIGHT :
 						for(int i = 0; i < ancho; i+=velocidad){
 							grafico.setBounds(posicion.x += velocidad, posicion.y, ancho, alto);
-							//colision();
+							colision();
 							Thread.sleep(100);
 						}
 						break;
 					case Celda.LEFT :
 						for(int i = 0; i < ancho; i+= velocidad){
 							grafico.setBounds(posicion.x -= velocidad, posicion.y, ancho, alto);
-							//colision();
+							colision();
 							Thread.sleep(100);
 						}
 						break;

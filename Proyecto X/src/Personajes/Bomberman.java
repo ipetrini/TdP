@@ -28,7 +28,7 @@ public class Bomberman extends Personaje {
 		super(4, d, n, c);
 		cantBombas = 1;
 		alcance = 1;
-		grafico = new BombermanGrafico(miCelda.getX(), miCelda.getY(), velocidad, miNivel);
+		grafico = new BombermanGrafico(miCelda.getX(), miCelda.getY(), 55, miNivel);
 	}
 	
 	/**
