@@ -85,8 +85,9 @@ public class BombermanGrafico extends EntidadGrafica {
 	
 	public void colision(){
 		for (Enemigo e : nivel.getEnemigos()){
-			if (e.getEntidad().getBounds().intersects(this.getBounds()))
+			if (e.getEntidad().getBounds().intersects(this.getBounds())){
 				nivel.destruirBomberman();
+			}
 		}
 	}
 	

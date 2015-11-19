@@ -79,8 +79,10 @@ public class RuguloGrafico extends EntidadGrafica {
 	}
 		
 	public void colision(){
-		if (nivel.getBomberman().getEntidad().getBounds().intersects(this.getBounds()))
+		if (nivel.getBomberman().getEntidad().getBounds().intersects(this.getBounds())){
 			nivel.destruirBomberman();
+		}
+		
 	}
 
 }

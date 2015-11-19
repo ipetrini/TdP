@@ -19,19 +19,19 @@ public class SiriusGrafico extends EntidadGrafica {
 	 */
 	public SiriusGrafico(int x, int y, int v, Nivel n) {
 		super(x, y, v, n);
-		this.imagen[0] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.imagen[1] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.imagen[2] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.imagen[3] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.movimiento[0] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.movimiento[1] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.movimiento[2] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.movimiento[3] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.morir[0] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.morir[1] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.morir[2] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.morir[3] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
-		this.morir[4] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Sirius.png"));
+		this.imagen[0] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Arriba.png"));
+		this.imagen[1] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Abajo.png"));
+		this.imagen[2] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Izquierda.png"));
+		this.imagen[3] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Derecha.png"));
+		this.movimiento[0] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/GifArriba.gif"));
+		this.movimiento[1] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/GifAbajo.gif"));
+		this.movimiento[2] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/GifIzquierda.gif"));
+		this.movimiento[3] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/GifDerecha.gif"));
+		this.morir[0] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Morir1.png"));
+		this.morir[1] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Morir2.png"));
+		this.morir[2] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Morir3.png"));
+		this.morir[3] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Morir4.png"));
+		this.morir[4] = new ImageIcon(this.getClass().getResource("/SiriusImagenes/Morir5.png"));
 	}
 	
 	public void mover(int dir){

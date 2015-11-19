@@ -52,7 +52,7 @@ public class GUI {
 	 */
 	public GUI() {
 		
-		frame = new JFrame();
+		frame = new JFrame("Bomberman");
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 1196, 516);
 		frame.setVisible(true);
@@ -128,12 +128,22 @@ public class GUI {
 	
 	public void terminarJuego() {
 		ImageIcon GameOver = new ImageIcon(this.getClass().getResource("/GUI/GameOver.png"));
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		JOptionPane.showOptionDialog(frame, "", "Perdiste!", JOptionPane.YES_NO_OPTION, 1, GameOver, new String[]{"Salir"},0 );
 		System.exit(0);
 	}
 	
 	public void ganarJuego(){
 		ImageIcon victory = new ImageIcon(this.getClass().getResource("/GUI/Victory.png"));
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		JOptionPane.showOptionDialog(frame, "", "Ganaste!", JOptionPane.YES_NO_OPTION, 1, victory, new String[]{"Salir"},0 );
 		System.exit(0);
 	}

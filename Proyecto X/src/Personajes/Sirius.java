@@ -1,13 +1,9 @@
 package Personajes;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Random;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import Graficos.SiriusGrafico;
 import Nivel.Celda;
@@ -29,13 +25,13 @@ public class Sirius extends Enemigo {
 	 * @param puntaje
 	 */
 	public Sirius(Nivel n, Celda c) {
-		super(2, false, n, c, 50);
+		super(4, false, n, c, 50);
 		grafico = new SiriusGrafico(miCelda.getX(), miCelda.getY(), velocidad, miNivel);
 	}
 
 
 	
-	
+	/*
 	public void mover() {
 	
 		Map<Integer, Integer> mapeo = new Hashtable<Integer, Integer>();
@@ -85,22 +81,75 @@ public class Sirius extends Enemigo {
 			
 	
 	}
+	*/
+	
+	public void mover(){
+		int BomberX = miNivel.getBomberman().getCelda().getX();
+		int BomberY = miNivel.getBomberman().getCelda().getY();
+		int SiriusX = miCelda.getX();
+		int SiriusY = miCelda.getY();
+		
+		int mov = 0;
+		
+		if (SiriusX > BomberX)
+			if (moverAux(Celda.LEFT))
+				mov++;
+		else{
+			if (SiriusX < BomberX)
+				if (moverAux(Celda.RIGHT))
+					mov++;
+		}
+		
+		if (SiriusY > BomberY)
+			if (moverAux(Celda.UP))
+				mov++;
+		else{
+			if (SiriusY < BomberY)
+				if (moverAux(Celda.DOWN))
+					mov++;
+		}
+		
+		if (mov==0){
+			int i = 0;
+			while (i < 5){
+				Random r = new Random();
+				int x = r.nextInt(4);
+				switch (x) {
+				case 0 :
+					if (moverAux(Celda.UP))
+						mover();
+				case 1 :
+					if (moverAux(Celda.DOWN))
+						mover();
+				case 2 : 
+					if (moverAux(Celda.LEFT))
+						mover();
+				case 3 : 
+					if (moverAux(Celda.RIGHT))
+						mover();
+				}
+			}
+		}
+	}
 	
 	public boolean puedeMover(int dir){
 		return (miCelda.getVecina(dir)!=null && miCelda.getVecina(dir).getPared()==null);		
 	}
 	
 
-	private void moverAux(int dir){
+	private boolean moverAux(int dir){
 		Celda next = this.miCelda.getVecina(dir);		
 		if(next != null){
 				if (next.recibirEnemigo(this, dir)){
 					miCelda = next;
-					
-			}					
+					return true;
+				}	
+				else 
+					return false;
 		}
 		else
 			miCelda.agregarEnemigo(this);
+		return false;
 	}
 	
 

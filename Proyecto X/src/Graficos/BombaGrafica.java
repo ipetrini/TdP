@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 public class BombaGrafica  {
 	
 	//Atributos 
-	protected Icon imagen[];
+	protected Icon imagen;
 	protected JLabel grafico;
 	protected final int ancho = 32;
 	protected final int alto = 32;	
@@ -30,9 +30,7 @@ public class BombaGrafica  {
 		
 		posicion = new Point(x * ancho, y * alto);
 		grafico = null;
-		imagen= new Icon [2];
-		imagen[0]= new ImageIcon(this.getClass().getResource("/BombaImagenes/bomba.png"));
-		imagen[1]= new ImageIcon(this.getClass().getResource("/BombaImagenes/explode.png"));
+		imagen= new ImageIcon(this.getClass().getResource("/BombaImagenes/Bomba.gif"));
 		
 	}
 	
@@ -51,7 +49,7 @@ public class BombaGrafica  {
 	
 	public JLabel getGrafico(){
 		if(this.grafico == null){
-			this.grafico = new JLabel(imagen[0]);
+			this.grafico = new JLabel(imagen);
 			this.grafico.setBounds(posicion.x, posicion.y, ancho, alto);
 		}
 		return this.grafico;

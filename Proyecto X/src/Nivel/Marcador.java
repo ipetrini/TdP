@@ -95,5 +95,9 @@ public class Marcador extends Thread {
 		destructLeft.setText(""+contDestructibles);
 		destructLeftSombra.setText(""+contDestructibles);
 	}
+	
+	public void pararTiempo(){
+		this.interrupt();
+	}
 
 }
