@@ -42,32 +42,23 @@ public class ThreadBomberman extends Thread {
 				gui.toggleLock();
 			}
 		}
-		int i = 0;
-		while (i<5){
-			grafico.morir(i);
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-			}
-			i++;
-		}
 	}
 	
 	/**
 	 * Método que permite la detención del Thread.
 	 */
-	public void detener() {
-	
-		this.interrupt(); 		
+	public void detener() {	
 		this.detener = true;
+		this.interrupt(); 
 	}
 	
 	/**
 	 * Método que destruye el bomberman.
 	 */
-	public void destruir() {	
+	public void destruir() {
 		this.logica.morir();
 		this.detener();	
+		
 	}
 }
 

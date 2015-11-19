@@ -292,9 +292,13 @@ public class Nivel {
 			if(this.threadB != null){
 				this.threadB.destruir();
 				this.threadB = null;
+				
 			}
 		}
-		terminarJuego();
+		if (threadB==null)
+			gui.terminarJuego();
+		
+		
 	}
 	/**
 	 * Método que destruye al enemigo pasado por parámetro.

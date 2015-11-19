@@ -30,6 +30,8 @@ public class GUI {
 	private Nivel nivel;
 	private boolean lock = false;
 	private int direction = -1;
+	ImageIcon GameOver = new ImageIcon(this.getClass().getResource("/GUI/GameOver.png"));
+
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -84,8 +86,7 @@ public class GUI {
 		imagen.setIcon(new ImageIcon(this.getClass().getResource("/GUI/Ayuda.png")));
 		frame.add(imagen);
 		
-		
-		
+	
 	}
 	
 	protected void accion(KeyEvent key){
@@ -124,12 +125,6 @@ public class GUI {
 	}
 	
 	public void terminarJuego() {
-		ImageIcon GameOver = new ImageIcon(this.getClass().getResource("/GUI/GameOver.png"));
-		try {
-			Thread.sleep(700);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		JOptionPane.showOptionDialog(frame, "", "Perdiste!", JOptionPane.YES_NO_OPTION, 1, GameOver, new String[]{"Salir"},0 );
 		System.exit(0);
 	}

@@ -91,6 +91,18 @@ public class BombermanGrafico extends EntidadGrafica {
 		}
 	}
 	
+	public void morir(int j){
+		int i = 0;
+		while (i<5){
+			grafico.setIcon(morir[i]);
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e) {
+			}
+			i++;
+		}
+	}
+	
 	
 
 }

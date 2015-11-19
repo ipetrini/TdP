@@ -98,7 +98,7 @@ public class Bomberman extends Personaje {
 	 */
 	public void morir(){
 		if (dios==false){
-			//miNivel.terminarJuego();
+			grafico.morir(1);
 			System.out.println("Bomberman murio.");
 		}
 	}

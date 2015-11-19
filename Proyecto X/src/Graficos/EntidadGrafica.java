@@ -123,7 +123,7 @@ public abstract class EntidadGrafica {
 	 * @param dirección del movimiento.
 	 */
 	
-	/*public void mover(int dir){
+	public void mover(int dir){
 		if(grafico != null){
 			cambiarMovimiento(dir);
 			
@@ -161,7 +161,7 @@ public abstract class EntidadGrafica {
 		cambiarIcono(dir);	
 		}
 	}
-	*/
+	
 	
 	/**
 	 * Método utilizado para obtener la imagen de la entidad gráfica.
@@ -179,7 +179,7 @@ public abstract class EntidadGrafica {
 		return new Rectangle(posicion.x, posicion.y, 20, 20);
 	}
 	
-	public abstract void mover(int i);
+	//public abstract void mover(int i);
 	
 	
 }
