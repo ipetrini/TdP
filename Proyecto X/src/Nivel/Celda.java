@@ -203,11 +203,11 @@ public class Celda {
 		 */
 		public boolean explotar(){	
 			ArrayList<Enemigo> toRemove = new ArrayList<Enemigo>();
-			for (Enemigo e: misEnemigos){
-				toRemove.add(e);
-				miNivel.destruirEnemigo(e);
-			}
+			for (int i = 0; i<misEnemigos.size(); i++)
+				toRemove.add(misEnemigos.get(i));
 			misEnemigos.removeAll(toRemove);
+			for (Enemigo e: toRemove)
+				miNivel.destruirEnemigo(e);
 			
 			if (miPared != null){
 				destruirPared();
