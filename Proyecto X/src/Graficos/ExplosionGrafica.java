@@ -36,7 +36,7 @@ public class ExplosionGrafica {
 		imagen[9]= new ImageIcon(this.getClass().getResource("/ExplosionImagenes/11.png"));
 		grafico.setIcon(null);
 		grafico.setBounds(posicion.x, posicion.y, ancho, alto);
-		nivel.getGUI().add(grafico);
+		nivel.getGUI().addMapa(grafico);
 
 	}
 	

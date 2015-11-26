@@ -134,7 +134,7 @@ public class Nivel {
 					Mapa[i][j] = new Celda(this, i, j);
 					if ((j == 0 || j == 12) || (i == 0 || i == 30)){
 						Mapa[i][j].setPared(new Indestructible(Mapa[i][j]));
-						gui.add(Mapa[i][j].getPared().getGrafico());
+						gui.addMapa(Mapa[i][j].getPared().getGrafico());
 					}				
 			}
 		}
@@ -143,7 +143,7 @@ public class Nivel {
 		Celda c = this.getCelda(1, 1);
 		miBomberman = new Bomberman(false, this, Mapa[1][1]);
 		c.setBomberman(miBomberman);
-		gui.add(miBomberman.getGrafico());
+		gui.addMapa(miBomberman.getGrafico());
 		threadB = new ThreadBomberman(this, gui, miBomberman, miBomberman.getEntidad());
 		threadB.start();
 	
@@ -152,7 +152,7 @@ public class Nivel {
 			for (int j = 1; j < alto-1; j++){
 				if (i%2==0 && j%2 == 0){
 					Mapa[i][j].setPared(new Indestructible(Mapa[i][j]));
-					gui.add(Mapa[i][j].getPared().getGrafico());
+					gui.addMapa(Mapa[i][j].getPared().getGrafico());
 				}
 			}
 		}
@@ -166,7 +166,7 @@ public class Nivel {
 			int j = r.nextInt(alto);
 			if (Mapa[i][j].getPared()==null && noBloquea(i,j)){
 				Mapa[i][j].setPared(new Destructible(Mapa[i][j]));
-				gui.add(Mapa[i][j].getPared().getGrafico());
+				gui.addMapa(Mapa[i][j].getPared().getGrafico());
 				x++;
 			}
 		}
@@ -193,7 +193,7 @@ public class Nivel {
 				Rugulo rug = new Rugulo(this, Mapa[x][y]);
 				misEnemigos.add(rug);
 				Mapa[x][y].agregarEnemigo(rug);
-				gui.add(rug.getGrafico());
+				gui.addMapa(rug.getGrafico());
 				threadE[i] = new ThreadEnemigo(rug, rug.getEntidad());
 				threadE[i].start();	
 				rug.setPosThread(i);
@@ -211,7 +211,7 @@ public class Nivel {
 				Altair alt = new Altair(this, Mapa[x][y]);
 				misEnemigos.add(alt);
 				Mapa[x][y].agregarEnemigo(alt);
-				gui.add(alt.getGrafico());
+				gui.addMapa(alt.getGrafico());
 				threadE[i] = new ThreadEnemigo(alt, alt.getEntidad());
 				threadE[i].start();
 				alt.setPosThread(i);
@@ -224,7 +224,7 @@ public class Nivel {
 		Sirius s = new Sirius(this, Mapa[29][11]);
 		misEnemigos.add(s);
 		Mapa[29][11].agregarEnemigo(s);
-		gui.add(s.getGrafico());
+		gui.addMapa(s.getGrafico());
 		threadE[5] = new ThreadEnemigo(s, s.getEntidad());
 		threadE[5].start();
 		s.setPosThread(5);
@@ -243,7 +243,7 @@ public class Nivel {
 					if (c.getPared().puedePowerUp()){
 						SpeedUp s = new SpeedUp(c);
 						c.setPowerUp(s);
-						gui.add(s.getGrafico());
+						gui.addMapa(s.getGrafico());
 						p++;
 					}
 				}
@@ -251,7 +251,7 @@ public class Nivel {
 					if (c.getPared().puedePowerUp()){
 						Bombality b = new Bombality(c);
 						c.setPowerUp(b);
-						gui.add(b.getGrafico());
+						gui.addMapa(b.getGrafico());
 						p++;
 					}
 				}
@@ -259,7 +259,7 @@ public class Nivel {
 					if (c.getPared().puedePowerUp()){
 						Fatality f = new Fatality(c);
 						c.setPowerUp(f);
-						gui.add(f.getGrafico());
+						gui.addMapa(f.getGrafico());
 						p++;
 					}
 				}
@@ -267,7 +267,7 @@ public class Nivel {
 					if (c.getPared().puedePowerUp()){
 						Masacrality m = new Masacrality(c);
 						c.setPowerUp(m);
-						gui.add(m.getGrafico());
+						gui.addMapa(m.getGrafico());
 						p++;
 					}
 				}					

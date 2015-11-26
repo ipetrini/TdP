@@ -114,7 +114,7 @@ public class Bomba {
 	 * Método que agrega la bomba a la interfaz gráfica.
 	 */
 	public void agregarBomba(){
-		miNivel.getGUI().add(getGrafico());		
+		miNivel.getGUI().addMapa(getGrafico());		
 	}
 	
 }

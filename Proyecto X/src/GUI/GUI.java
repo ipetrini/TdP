@@ -309,7 +309,7 @@ public class GUI {
 	 * Método utilizado para agregar un componente al juego.
 	 * @param componente
 	 */
-	public void add(Component c){
+	public void addMapa(Component c){
 		Mapa.add(c);
 	}
 	/**
