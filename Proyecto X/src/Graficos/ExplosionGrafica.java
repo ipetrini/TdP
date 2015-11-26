@@ -6,7 +6,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Nivel.Nivel;
-
+/**
+ * Clase utilizada para representar la explosión de la bomba.
+ * @author Tomás Perotti - Iván Petrini
+ **/
 public class ExplosionGrafica {
 
 	protected Icon imagen[];

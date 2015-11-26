@@ -10,7 +10,7 @@ import Nivel.Nivel;
  */
 public abstract class Enemigo extends Personaje {
 
-	//Atributos
+	
 	protected int puntaje;
 	protected int posThread;
 	/**
@@ -47,11 +47,17 @@ public abstract class Enemigo extends Personaje {
 		miCelda.eliminarEnemigo(this);
 		System.out.println("Enemigo murio");
 	}
-	
+	/**
+	 * Método que setea la posición del thread a una recibida por parámetro.
+	 * @param posición
+	 */
 	public void setPosThread(int i){
 		posThread = i;
 	}
-	
+	/**
+	 * Método que retorna la posición actual del thread.
+	 * @return posicion
+	 */
 	public int getPosThread(){
 		return posThread;
 	}

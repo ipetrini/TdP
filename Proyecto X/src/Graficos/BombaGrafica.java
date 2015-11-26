@@ -41,12 +41,17 @@ public class BombaGrafica  {
 		grafico.setIcon(null);
 		grafico.setBounds(posicion.x-32, posicion.y-32, ancho*3, alto*3);
 	}
-	
+	/**
+	 * Método utilizado para hacer desaparecer gráficamente la bomba.
+	 */
 	public void desaparecer() {
 		grafico.setIcon(null);
 		
 	}
-	
+	/**
+	 * Método que retorna el gráfico asociado a la bomba.
+	 * @return JLabel
+	 */
 	public JLabel getGrafico(){
 		if(this.grafico == null){
 			this.grafico = new JLabel(imagen);

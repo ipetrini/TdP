@@ -12,7 +12,7 @@ import Personajes.Bomberman;
  */
 public abstract class PowerUp {
 	
-	//Atributos
+	
 	protected PowerUpGrafico grafico;
 		
 	/**

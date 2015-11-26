@@ -24,10 +24,7 @@ public class Masacrality extends PowerUp {
 		
 	}
 
-	/**
-	 * Método que activa el Power Up.
-	 * @param Bomberman
-	 */
+	
 	public void activar(Bomberman b) {
 		b.setDios(true);
 		thread = new ThreadMasacrality(b);

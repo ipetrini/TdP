@@ -51,6 +51,8 @@ public abstract class ParedGrafica {
 		}
 		return this.grafico;
 	}
-	
+	/**
+	 * Método utilizado para hacer explotar una pared.
+	 */
 	public abstract void explotar();
 }

@@ -26,7 +26,6 @@ public abstract class EntidadGrafica {
 	protected final int alto = 32;	
 	protected int velocidad;
 	protected Nivel nivel;
-	protected int speeds;
 	
 	//Constructor
 	/**
@@ -41,7 +40,6 @@ public abstract class EntidadGrafica {
 		velocidad = v;		
 		morir = new Icon[5];
 		nivel = n;
-		speeds = 0;
 	}
 	
 	/**
@@ -59,18 +57,11 @@ public abstract class EntidadGrafica {
 	public int getVelocidad(){
 		return velocidad;
 	}
-	
+	/**
+	 * Método que duplica la velocidad de la entidad gráfica.
+	 */
 	public void duplicarVelocidad(){
-		if (speeds == 0){
-			velocidad -= 15;
-			speeds++;
-		}
-		if (speeds == 1){
-			velocidad -= 15;
-			speeds++;
-		}
-		else
-			velocidad -= 5;
+		velocidad /= 2;
 	}
 		
 	protected void cambiarIcono(int d){
@@ -117,52 +108,7 @@ public abstract class EntidadGrafica {
 	public void morir(int i){
 		grafico.setIcon(morir[i]);		
 	}
-	
-	/**
-	 * Método utilizado para mover la entidad gráfica.
-	 * @param dirección del movimiento.
-	 */
-	
-	public void mover(int dir){
-		if(grafico != null){
-			cambiarMovimiento(dir);
-			
-			try {
-				switch (dir){
-					case Celda.UP :
-						for(int i = 0; i < alto; i+=velocidad){
-							grafico.setBounds(posicion.x, posicion.y -= velocidad, ancho, alto);
-							Thread.sleep(100);
-						}
-						
-						break;
-					case Celda.DOWN : 
-						for(int i = 0; i < alto; i+=velocidad){
-							grafico.setBounds(posicion.x, posicion.y += velocidad, ancho, alto);
-							Thread.sleep(100);
-						}
-						break;
-					case Celda.RIGHT :
-						for(int i = 0; i < ancho; i+=velocidad){
-							grafico.setBounds(posicion.x += velocidad, posicion.y, ancho, alto);
-							Thread.sleep(100);
-						}
-						break;
-					case Celda.LEFT :
-						for(int i = 0; i < ancho; i+= velocidad){
-							grafico.setBounds(posicion.x -= velocidad, posicion.y, ancho, alto);
-							Thread.sleep(100);
-						}
-						break;
-				}
-				
-			} catch (InterruptedException e) {
-			}
-		cambiarIcono(dir);	
-		}
-	}
-	
-	
+		
 	/**
 	 * Método utilizado para obtener la imagen de la entidad gráfica.
 	 * @return imagen del grafico.
@@ -174,12 +120,23 @@ public abstract class EntidadGrafica {
 		}
 		return this.grafico;
 	}
-	
+	/**
+	 * Método que retorna la posición de la entidad gráfica.
+	 * @return Rectangle
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(posicion.x, posicion.y, 20, 20);
 	}
 	
-	//public abstract void mover(int i);
+	/**
+	 * Método utilizado para mover la entidad gráfica.
+	 * @param dirección del movimiento.
+	 */
+	public abstract void mover(int i);
+	/**
+	 * Método que controla la respuesta a una colisión entre entidades.
+	 */
+	public abstract void colision();
 	
 	
 }

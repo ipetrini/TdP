@@ -20,10 +20,7 @@ public class Fatality extends PowerUp{
 		c.setPowerUp(this);
 	}
 
-	/**
-	 * Método que activa el Power Up.
-	 * @param Bomberman
-	 */
+	
 	public void activar(Bomberman b) {
 		b.duplicarAlcance();
 		System.out.println("Agarré Power Up - Fatality");

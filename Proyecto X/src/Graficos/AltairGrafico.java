@@ -19,10 +19,10 @@ public class AltairGrafico extends EntidadGrafica {
 	 */
 	public AltairGrafico(int x, int y, int v, Nivel n) {
 		super(x, y, v, n);
-		this.imagen[0] = new ImageIcon(this.getClass().getResource("/AltairImagenes/normal.png"));
-		this.imagen[1] = new ImageIcon(this.getClass().getResource("/AltairImagenes/normal.png"));
-		this.imagen[2] = new ImageIcon(this.getClass().getResource("/AltairImagenes/normal.png"));
-		this.imagen[3] = new ImageIcon(this.getClass().getResource("/AltairImagenes/normal.png"));
+		this.imagen[0] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Normal.png"));
+		this.imagen[1] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Normal.png"));
+		this.imagen[2] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Normal.png"));
+		this.imagen[3] = new ImageIcon(this.getClass().getResource("/AltairImagenes/Normal.png"));
 		this.movimiento[0] = new ImageIcon(this.getClass().getResource("/AltairImagenes/AltairMovimiento.gif"));
 		this.movimiento[1] = new ImageIcon(this.getClass().getResource("/AltairImagenes/AltairMovimiento.gif"));
 		this.movimiento[2] = new ImageIcon(this.getClass().getResource("/AltairImagenes/AltairMovimiento.gif"));
@@ -41,32 +41,32 @@ public class AltairGrafico extends EntidadGrafica {
 			try {
 				switch (dir){
 					case Celda.UP :
-						for(int i = 0; i < alto; i+=velocidad){
-							grafico.setBounds(posicion.x, posicion.y -= velocidad, ancho, alto);
+						for(int i = 0; i < alto; i++){
+							grafico.setBounds(posicion.x, posicion.y -= 1, ancho, alto);
 							colision();
-							Thread.sleep(100);
+							Thread.sleep(velocidad/2);
 						}
 						
 						break;
 					case Celda.DOWN : 
-						for(int i = 0; i < alto; i+=velocidad){
-							grafico.setBounds(posicion.x, posicion.y += velocidad, ancho, alto);
+						for(int i = 0; i < alto; i++){
+							grafico.setBounds(posicion.x, posicion.y +=1 , ancho, alto);
 							colision();
-							Thread.sleep(100);
+							Thread.sleep(velocidad/2);
 						}
 						break;
 					case Celda.RIGHT :
-						for(int i = 0; i < ancho; i+=velocidad){
-							grafico.setBounds(posicion.x += velocidad, posicion.y, ancho, alto);
+						for(int i = 0; i < ancho; i++){
+							grafico.setBounds(posicion.x += 1, posicion.y, ancho, alto);
 							colision();
-							Thread.sleep(100);
+							Thread.sleep(velocidad/2);
 						}
 						break;
 					case Celda.LEFT :
-						for(int i = 0; i < ancho; i+= velocidad){
-							grafico.setBounds(posicion.x -= velocidad, posicion.y, ancho, alto);
+						for(int i = 0; i < ancho; i++){
+							grafico.setBounds(posicion.x -= 1, posicion.y, ancho, alto);
 							colision();
-							Thread.sleep(100);
+							Thread.sleep(velocidad/2);
 						}
 						break;
 				}

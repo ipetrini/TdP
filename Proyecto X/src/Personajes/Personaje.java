@@ -74,7 +74,10 @@ public abstract class Personaje {
 	public JLabel getGrafico(){
 		return grafico.getGrafico();
 	}
-	
+	/**
+	 * Método que retorna la entidad gráfica asociada al personaje.
+	 * @return EntidadGrafica
+	 */
 	public EntidadGrafica getEntidad(){
 		return grafico;
 	}

@@ -9,10 +9,9 @@ import Personajes.Enemigo;
  *
  */
 public class ThreadEnemigo extends Thread{
+		
 		private Enemigo Logica;
 		private EntidadGrafica grafico;
-		
-		//Atributos
 		private volatile boolean Detener;
 		
 		/**

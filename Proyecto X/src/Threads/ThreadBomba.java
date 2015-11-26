@@ -43,7 +43,7 @@ public class ThreadBomba extends Thread {
 		logica.explotar();	
 	}
 	/**
-	 * 
+	 * Método que hace desaparecer a la bomba.
 	 */
 	public void desaparecer() {
 		logica.desaparecer();

@@ -6,14 +6,21 @@ import javax.swing.JLabel;
 
 import GUI.GUI;
 import Nivel.Nivel;
-
+/**
+ * Clase que representa el thread del tiempo.
+ * @author Tomás Perotti - Iván Petrini
+ *
+ */
 public class ThreadTiempo extends Thread {
 
 		protected int s, m, h;
 		protected JLabel tiempo, contador, sombraTiempo, sombraContador;
 		protected volatile boolean seguir;
 		protected GUI gui;
-		
+		/**
+		 * Constructor que inicializa la parte gráfica del tiempo y otros marcadores.
+		 * @param nivel
+		 */
 		public ThreadTiempo(Nivel n){
 			gui = n.getGUI();
 			s=m=h=0;
@@ -48,7 +55,9 @@ public class ThreadTiempo extends Thread {
 			seguir = true;
 			
 		}
-		
+		/**
+		 * Método run del thread.
+		 */
 		public void run(){
 			try{
 				while(seguir){
@@ -70,5 +79,34 @@ public class ThreadTiempo extends Thread {
 			}
 			catch (InterruptedException e){
 			}
-			}		
+		
+		}	
+		/**
+		 * Método utilizado para parar el tiempo.
+		 */
+		public void parar(){
+			seguir = false;
+			this.interrupt();
+		}
+		/**
+		 * Método que retorna las horas del tiempo.
+		 * @return horas
+		 */
+		public int getH(){
+			return h;
+		}
+		/**
+		 * Método que retorna los minutos del tiempo.
+		 * @return minutos
+		 */
+		public int getM(){
+			return m;
+		}
+		/**
+		 * Método que retorna los segundos del tiempo.
+		 * @return segundos
+		 */
+		public int getS(){
+			return s;
+		}
 }

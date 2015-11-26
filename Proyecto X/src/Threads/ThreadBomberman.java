@@ -36,29 +36,41 @@ public class ThreadBomberman extends Thread {
 	 * Método run del Thread.
 	 */
 	public void run() {
-		while(!detener){
+		while(!detener && logica.estaVivo()){
 				if(gui.getLock()){
 				juego.mover(gui.getDirection());
 				gui.toggleLock();
 			}
 		}
+		int i = 0;
+		while (i<5){
+			grafico.morir(i);
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e) {
+			}
+			i++;
+		}
+		juego.terminarJuego();
+		gui.terminarJuego();
+
 	}
 	
 	/**
 	 * Método que permite la detención del Thread.
 	 */
-	public void detener() {	
+	public void detener() {
+	
+		this.interrupt(); 		
 		this.detener = true;
-		this.interrupt(); 
 	}
 	
 	/**
 	 * Método que destruye el bomberman.
 	 */
-	public void destruir() {
+	public void destruir() {	
 		this.logica.morir();
 		this.detener();	
-		
 	}
 }
 

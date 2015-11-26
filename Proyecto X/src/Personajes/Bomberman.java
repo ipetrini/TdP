@@ -14,9 +14,9 @@ import Nivel.Nivel;
  */
 public class Bomberman extends Personaje {
 	
-	//Atributos
 	protected int cantBombas;
 	protected int alcance;
+	protected boolean vivo;
 	
 	/**
 	 * Constructor que inicializa al bomberman con su nivel, modo dios, y su celda.
@@ -25,10 +25,11 @@ public class Bomberman extends Personaje {
 	 * @param celda
 	 */
 	public Bomberman(boolean d, Nivel n, Celda c) {
-		super(4, d, n, c);
+		super(50, d, n, c);
 		cantBombas = 1;
 		alcance = 1;
-		grafico = new BombermanGrafico(miCelda.getX(), miCelda.getY(), 55, miNivel);
+		grafico = new BombermanGrafico(miCelda.getX(), miCelda.getY(), velocidad, miNivel);
+		vivo = true;
 	}
 	
 	/**
@@ -98,7 +99,7 @@ public class Bomberman extends Personaje {
 	 */
 	public void morir(){
 		if (dios==false){
-			grafico.morir(1);
+			vivo = false;
 			System.out.println("Bomberman murio.");
 		}
 	}
@@ -107,11 +108,18 @@ public class Bomberman extends Personaje {
 	 * Método que realiza la colocación de la bomba en la celda del bomberman.
 	 */
 	public void ponerBomba(){
-		if(cantBombas>0){
+		if(cantBombas>0 || dios){
 			Bomba b = new Bomba(alcance, this.getCelda(), miNivel);
 			b.agregarBomba();
 			cantBombas--;
 		}
+	}
+	/**
+	 * Método que determina si el bomberman esta vivo o no.
+	 * @return true si esta vivo, false en caso contrario.
+	 */
+	public boolean estaVivo(){
+		return vivo;
 	}
 	
 

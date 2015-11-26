@@ -16,7 +16,6 @@ import PowerUps.Masacrality;
 import PowerUps.SpeedUp;
 import Threads.ThreadBomberman;
 import Threads.ThreadEnemigo;
-import Threads.ThreadTiempo;
 
 /**
  * Clase que representa el nivel del juego.
@@ -29,7 +28,6 @@ public class Nivel {
 	protected ArrayList<Enemigo> misEnemigos;
 	protected ThreadEnemigo[] threadE;
 	protected ThreadBomberman threadB;
-	protected ThreadTiempo tiempo;
 	protected Bomberman miBomberman;
 	protected Celda[][] Mapa;
 	protected Marcador miMarcador;
@@ -52,7 +50,6 @@ public class Nivel {
 		misEnemigos = new ArrayList<Enemigo>();
 		threadE = new ThreadEnemigo[6];
 		crearMapa(gui);
-		
 	}
 	
 	/**
@@ -106,13 +103,7 @@ public class Nivel {
 	 * Método que termina la partida del juego. 
 	 */
 	public void terminarJuego(){
-		gui.terminarJuego();
-	}
-	/**
-	 * Método que gana la partida del juego. 
-	 */
-	public void ganarJuego(){
-		gui.ganarJuego();
+		miMarcador.pararTiempo();
 	}
 	
 	/**
@@ -292,13 +283,8 @@ public class Nivel {
 			if(this.threadB != null){
 				this.threadB.destruir();
 				this.threadB = null;
-				
 			}
 		}
-		if (threadB==null)
-			gui.terminarJuego();
-		
-		
 	}
 	/**
 	 * Método que destruye al enemigo pasado por parámetro.
@@ -313,6 +299,9 @@ public class Nivel {
 			
 	}
 	
+	/**
+	 * Método que decrementa la cantidad de celdas destructibles.
+	 */
 	public void celdaDestruida(){
 		miMarcador.decrementarDestructibles();
 		contDestructibles--;
@@ -320,7 +309,7 @@ public class Nivel {
 	
 	/**
 	* Método que retorna la cantidad de celdas destructibles restantes.
-	* @return
+	* @return cantidad de celdas destructibles.
 	*/
 	public int destructiblesLeft() {
 		return contDestructibles;

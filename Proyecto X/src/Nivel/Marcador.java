@@ -22,7 +22,10 @@ public class Marcador extends Thread {
 	protected int contDestructibles;
 	ThreadTiempo tiempo;
 	protected JLabel puntajelbl, sombrapuntaje, puntos, sombrapuntos, destructLeft, destructLeftSombra, destructImagen;
-		
+	/**
+	 * Constructor que inicializa la parte gráfica del marcador y sus respectivos threads.	
+	 * @param nivel
+	 */
 	public Marcador (Nivel n) {	
 		gui = n.getGUI();
 		tiempo = new ThreadTiempo(n);
@@ -72,32 +75,63 @@ public class Marcador extends Thread {
 	}
 		
 	
-	
+	/**
+	 * Método utilizado para aumentar el puntaje del marcador con los puntos pasados por parámetro.
+	 * @param puntos
+	 */
 	public void aumentarPuntaje(int i) {
 		puntaje+=i;
 		puntos.setText(""+puntaje);
 		sombrapuntos.setText(""+puntaje);		
 	}
-	
+	/**
+	 * Método que retorna el puntaje del marcador.
+	 * @return puntaje
+	 */
 	public int getPuntaje() {
 		return puntaje;
 	}
-	
+	/**
+	 * Método que setea un puntaje pasado por parámetro.
+	 * @param puntaje
+	 */
 	public void setPuntaje(int i) {
 		puntaje=i;
 	}
 
 	/**
-	 * Decremento la cantidad de destructibles faltantes en 1.
+	 * Método que decrementa la cantidad de destructibles faltantes en 1.
 	 */
 	public void decrementarDestructibles(){
 		contDestructibles--;
 		destructLeft.setText(""+contDestructibles);
 		destructLeftSombra.setText(""+contDestructibles);
 	}
-	
+	/**
+	 * Método utilizado para parar el tiempo
+	 */
 	public void pararTiempo(){
-		this.interrupt();
+		tiempo.parar();
 	}
-
+	/**
+	 * Método que retorna las horas del tiempo.
+	 * @return horas
+	 */
+	public int getH(){
+		return tiempo.getH();
+	}
+	/**
+	 * Método que retorna los minutos del tiempo.
+	 * @return minutos
+	 */
+	public int getM(){
+		return tiempo.getM();
+	}
+	/**
+	 * Método que retorna los segundos del tiempo.
+	 * @return segundos
+	 */
+	public int getS(){
+		return tiempo.getS();
+	}
 }

@@ -20,11 +20,7 @@ public class Destructible extends Pared {
 		grafico = new DestructibleGrafica(c.getX(), c.getY());
 	}
 	
-	/**
-	 * Método que determina si un enemigo puede atravesar o no la pared.
-	 * @param enemigo
-	 * @return true si lo puede recibir, false en caso contrario.
-	 */
+	
 	public boolean recibirEnemigo(Enemigo e, int dir) {
 		if (e.esDios()){
 			miCelda.agregarEnemigo(e);
@@ -34,11 +30,7 @@ public class Destructible extends Pared {
 		return false;
 	}
 
-	/**
-	 * Método que determina si el Bomberman puede atravesar o no la pared.
-	 * @param enemigo
-	 * @return true si lo puede recibir, false en caso contrario.
-	 */
+	
 	public boolean recibirBomberman(Bomberman b, int dir) {
 		if (b.esDios()){
 			miCelda.setBomberman(b);
@@ -48,16 +40,15 @@ public class Destructible extends Pared {
 		return false;
 	}
 
-	/**
-	 * Método que determina si la pared se puede destruir o no.
-	 * @return true si lo puede recibir, false en caso contrario.
-	 */
+	
 	public boolean destruir() {
 		grafico.explotar();
 		miCelda.getMapa().getMarcador().aumentarPuntaje(10);
 		miCelda.getMapa().celdaDestruida();
-		if (miCelda.getMapa().destructiblesLeft()==0)
-			miCelda.getMapa().ganarJuego();
+		if (miCelda.getMapa().destructiblesLeft()==0){
+			miCelda.getMapa().terminarJuego();
+			miCelda.getMapa().getGUI().ganarJuego();
+		}
 		return true;
 	}
 

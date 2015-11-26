@@ -53,7 +53,10 @@ public class DestructibleGrafica extends ParedGrafica {
 		thread = new ThreadDestructible(this);
 		thread.start();
 	}
-	
+	/**
+	 * Método utilizado para cambiar el gráfico de la explosión.
+	 * @param numero del icono
+	 */
 	public void cambiarExplosion(int i){
 		grafico.setIcon(explosion[i]);
 	}

@@ -19,13 +19,11 @@ public class Rugulo extends Enemigo{
 	 * @param celda
 	 */
 	public Rugulo(Nivel n, Celda c) {
-		super(2, false, n, c, 15);
+		super(90, false, n, c, 15);
 		grafico = new RuguloGrafico(miCelda.getX(), miCelda.getY(), velocidad, miNivel);		
 	}
 
-	/**
-	 * Método que realiza el movimiento del Rugulo de manera random.
-	 */
+	
 	public void mover() {
 		Random r = new Random();		
 		int dir = r.nextInt(4);		

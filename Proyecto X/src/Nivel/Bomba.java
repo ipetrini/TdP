@@ -94,21 +94,24 @@ public class Bomba {
 		miNivel.getBomberman().aumentarBombas();
 		
 	}
-	
+	/**
+	 * Método que hace desaparecer a la bomba luego de su explosión.
+	 */
 	public void desaparecer() {
 		grafico.desaparecer();
 		
 	}
 	
 	/**
-	 * Método que hace desaparecer a la bomba luego de su explosión.
+	 * Método que retorna el gráfico asociado a la bomba.
+	 * @return JLabel
 	 */
 	public JLabel getGrafico() {
 		return grafico.getGrafico();
 	}
 	
 	/**
-	 * Método que agrega la bomba a la GUI.
+	 * Método que agrega la bomba a la interfaz gráfica.
 	 */
 	public void agregarBomba(){
 		miNivel.getGUI().add(getGrafico());		

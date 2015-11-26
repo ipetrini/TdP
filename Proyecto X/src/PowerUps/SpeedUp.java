@@ -20,10 +20,7 @@ public class SpeedUp extends PowerUp {
 		c.setPowerUp(this);
 	}
 	
-	/**
-	 * Método que activa el Power Up.
-	 * @param bomberman
-	 */
+	
 	public void activar(Bomberman b) {
 		b.velocidad2X();
 		System.out.println("Agarré Power Up - Speed Up");
